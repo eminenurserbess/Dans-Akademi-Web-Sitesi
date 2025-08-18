@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kullanıcı Paneli | Vali Osman Dance Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+      :root {
+        --primary-color: #dd5928;
+        --primary-color-light: #f07047;
+        --text-light: #eae0c8;
+        --text-dark: #333;
+        --header-background-solid: #817469;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: #f9f5f0;
+        color: var(--text-dark);
+        line-height: 1.6;
+      }
+
+      .student-container {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        min-height: 100vh;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        background-color: var(--header-background-solid);
+        color: var(--text-light);
+        padding: 2rem 1rem;
+        position: relative;
+      }
+
+      .profile-section {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(234, 224, 200, 0.2);
+      }
+
+      .profile-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      .profile-name {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .nav-menu {
+        list-style: none;
+      }
+
+      .nav-item {
+        margin-bottom: 0.5rem;
+      }
+
+      .nav-link {
+        display: block;
+        color: var(--text-light);
+        text-decoration: none;
+        padding: 0.8rem 1rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .nav-link i {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+      }
+
+      /* Main Content */
+      .main-content {
+        padding: 2rem;
+      }
+
+      .header {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .logout-btn {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.5rem 1.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .logout-btn:hover {
+        background-color: var(--primary-color-light);
+      }
+
+      /* Geçmiş Kurslar Sayfası Stilleri */
+      .content-section {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        margin-top: 30px;
+      }
+
+      .content-section h2 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--primary-color-light);
+      }
+
+      .filtre-alani {
+        margin-bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .filtre-alani label {
+        font-weight: 500;
+        color: #555;
+      }
+
+      .filtre-alani select {
+        padding: 8px 12px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      /* Yeni kart stili */
+      .gecmis-kurs-listesi {
+        display: grid;
+        gap: 1rem; /* Kartlar arası boşluk */
+      }
+
+      .kurs-karti {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e0e0e0; /* Belirgin kenarlık */
+      }
+
+      .kurs-bilgi {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 5px;
+      }
+
+      .kurs-bilgi:last-child {
+        margin-bottom: 0;
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .kurs-bilgi span:first-child {
+        font-weight: 600;
+      }
+
+      .kurs-bilgi span:last-child {
+        text-align: right;
+      }
+
+      /* Masaüstü için tablo stili */
+      @media (min-width: 769px) {
+        .data-table-container {
+          overflow-x: auto;
+        }
+
+        .data-table {
+          width: 100%;
+          background: white;
+          border-radius: 8px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          border-collapse: collapse;
+        }
+
+        .data-table thead {
+          background-color: var(--primary-color);
+          color: #fff;
+        }
+
+        .data-table th,
+        .data-table td {
+          padding: 15px;
+          text-align: left;
+          white-space: nowrap;
+        }
+
+        .data-table tbody tr {
+          border-bottom: 1px solid #ddd;
+          transition: background-color 0.3s ease;
+        }
+
+        .data-table tbody tr:hover {
+          background-color: #f5f5f5;
+        }
+
+        .data-table td:first-child {
+          font-weight: 600;
+        }
+
+        .gecmis-kurs-listesi {
+          display: none; /* Masaüstünde kartları gizle */
+        }
+      }
+
+      /* Mobil Menü Butonu */
+      .menu-toggle {
+        display: none;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        cursor: pointer;
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* --- Mobil Uyumlu Tasarım --- */
+      @media (max-width: 768px) {
+        .student-container {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          position: fixed;
+          top: 0;
+          left: -250px;
+          width: 250px;
+          height: 100%;
+          z-index: 999;
+          transition: left 0.3s ease;
+          box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar.active {
+          left: 0;
+        }
+
+        .menu-toggle {
+          display: flex;
+        }
+
+        .main-content {
+          padding: 1rem;
+          margin-top: 60px;
+        }
+
+        .header {
+          justify-content: flex-end;
+          margin-bottom: 1rem;
+        }
+
+        .content-section {
+          padding: 20px;
+          margin-top: 10px;
+        }
+
+        /* Mobil görünümde tabloyu gizle, kartları göster */
+        .data-table-container {
+          display: none;
+        }
+
+        .gecmis-kurs-listesi {
+          display: grid; /* Mobil görünümde kartları göster */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="menu-toggle" id="menu-toggle-btn">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="student-container">
+      <aside class="sidebar" id="sidebar">
+        <div class="profile-section">
+          <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Profil Resmi" class="profile-img" />
+          <h3 class="profile-name">Aylin Demir</h3>
+        </div>
+
+        <nav>
+          <ul class="nav-menu">
+            <li class="nav-item">
+              <a href="kullanici.html" class="nav-link">
+                <i class="fas fa-home"></i>
+                Ana Sayfa
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="kurslarim.html" class="nav-link">
+                <i class="fas fa-book"></i>
+                Kurs Takvimi
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="gecmiş-kurslarim.html" class="nav-link active">
+                <i class="fas fa-book"></i>
+                Geçmiş Kurslarım
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="odeme.html" class="nav-link">
+                <i class="fas fa-file-invoice-dollar"></i>
+                Ödemeler
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <div class="header">
+          <button class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Çıkış Yap
+          </button>
+        </div>
+
+        <div class="content-section">
+          <h2>Geçmiş Kurslarım</h2>
+
+          <div class="filtre-alani">
+            <label for="ay-filtresi">Ay Seç:</label>
+            <select id="ay-filtresi">
+              <option value="all">Tümü</option>
+              <option value="1">Ocak</option>
+              <option value="2">Şubat</option>
+              <option value="3">Mart</option>
+              <option value="4">Nisan</option>
+              <option value="5">Mayıs</option>
+              <option value="6">Haziran</option>
+              <option value="7">Temmuz</option>
+              <option value="8" selected>Ağustos</option>
+              <option value="9">Eylül</option>
+              <option value="10">Ekim</option>
+              <option value="11">Kasım</option>
+              <option value="12">Aralık</option>
+            </select>
+          </div>
+
+          <div class="data-table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Kurs Adı</th>
+                  <th>Eğitmen</th>
+                  <th>Tarih</th>
+                </tr>
+              </thead>
+              <tbody id="gecmis-kurs-listesi-tablo"></tbody>
+            </table>
+          </div>
+
+          <div class="gecmis-kurs-listesi" id="gecmis-kurs-listesi-kart"></div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const gecmisKurslar = [
+          {
+            ad: "Latin Dansları Temel Seviye",
+            egitmen: "Mehmet Yılmaz",
+            tarih: "2024-03-25",
+          },
+          { ad: "Modern Dans Orta Seviye", egitmen: "Ayşe Kaya", tarih: "2024-05-18" },
+          { ad: "Bale Başlangıç", egitmen: "Marie Dubois", tarih: "2024-06-10" },
+          { ad: "Salsa İleri Seviye", egitmen: "Isabelle Perez", tarih: "2024-07-22" },
+          { ad: "Tango Temel Seviye", egitmen: "Ricardo Martinez", tarih: "2024-08-30" },
+          { ad: "Yoga Pratiği", egitmen: "Ahmet Yılmaz", tarih: "2024-08-15" },
+        ];
+
+        const kursListesiTablo = document.getElementById("gecmis-kurs-listesi-tablo");
+        const kursListesiKart = document.getElementById("gecmis-kurs-listesi-kart");
+        const ayFiltresi = document.getElementById("ay-filtresi");
+        const menuToggleBtn = document.getElementById("menu-toggle-btn");
+        const sidebar = document.getElementById("sidebar");
+
+        function tabloyuGuncelle(kurslar) {
+          // Masaüstü için tabloyu doldur
+          kursListesiTablo.innerHTML = "";
+          if (kurslar.length === 0) {
+            kursListesiTablo.innerHTML = `<tr><td colspan="3" style="text-align: center;">Bu ay tamamlanmış kurs bulunmamaktadır.</td></tr>`;
+          } else {
+            kurslar.forEach((kurs) => {
+              const tr = document.createElement("tr");
+              const tarih = new Date(kurs.tarih);
+              const formatliTarih = tarih.toLocaleDateString("tr-TR", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              });
+              tr.innerHTML = `
+                <td>${kurs.ad}</td>
+                <td>${kurs.egitmen}</td>
+                <td>${formatliTarih}</td>
+              `;
+              kursListesiTablo.appendChild(tr);
+            });
+          }
+
+          // Mobil için kartları doldur
+          kursListesiKart.innerHTML = "";
+          if (kurslar.length === 0) {
+            kursListesiKart.innerHTML = `<div class="kurs-karti" style="text-align: center;">Bu ay tamamlanmış kurs bulunmamaktadır.</div>`;
+          } else {
+            kurslar.forEach((kurs) => {
+              const kart = document.createElement("div");
+              kart.classList.add("kurs-karti");
+              const tarih = new Date(kurs.tarih);
+              const formatliTarih = tarih.toLocaleDateString("tr-TR", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              });
+              kart.innerHTML = `
+                <div class="kurs-bilgi">
+                  <span>Kurs Adı</span>
+                  <span>${kurs.ad}</span>
+                </div>
+                <div class="kurs-bilgi">
+                  <span>Eğitmen</span>
+                  <span>${kurs.egitmen}</span>
+                </div>
+                <div class="kurs-bilgi">
+                  <span>Tarih</span>
+                  <span>${formatliTarih}</span>
+                </div>
+              `;
+              kursListesiKart.appendChild(kart);
+            });
+          }
+        }
+
+        function filtreleVeGoster() {
+          const secilenAy = ayFiltresi.value;
+          let filtrelenmisKurslar = gecmisKurslar;
+
+          if (secilenAy !== "all") {
+            filtrelenmisKurslar = gecmisKurslar.filter((kurs) => {
+              const kursTarihi = new Date(kurs.tarih);
+              return kursTarihi.getMonth() + 1 === parseInt(secilenAy);
+            });
+          }
+          tabloyuGuncelle(filtrelenmisKurslar);
+        }
+
+        filtreleVeGoster();
+
+        ayFiltresi.addEventListener("change", filtreleVeGoster);
+
+        menuToggleBtn.addEventListener("click", () => {
+          sidebar.classList.toggle("active");
+        });
+
+        // Menünün dışına tıklayınca kapanma işlevi
+        document.addEventListener("click", (event) => {
+          // Menü açık değilse veya tıklanan yer menünün içindeyse hiçbir şey yapma
+          if (
+            !sidebar.classList.contains("active") ||
+            sidebar.contains(event.target) ||
+            menuToggleBtn.contains(event.target)
+          ) {
+            return;
+          }
+
+          // Menünün dışına tıklandığında menüyü kapat
+          sidebar.classList.remove("active");
+        });
+      });
+    </script>
+  </body>
+</html>

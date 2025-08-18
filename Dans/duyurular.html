@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tüm Duyurular - Vali Osman Dance Academy</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="css/duyurular.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="logo">
+          <a href="index.html">
+            <img src="images/textCrem.png" alt="Logo" />
+          </a>
+        </div>
+
+        <nav class="navbar">
+          <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="hakkımızda.html">Hakkımızda</a></li>
+            <li><a href="kurslar.html">Kurslar</a></li>
+            <li><a href="etkinlikler.html">Etkinlikler</a></li>
+            <li><a href="duyurular.html" class="active">Duyurular</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li class="lang-switcher">
+              <a href="#">EN</a>
+              <span>|</span>
+              <a href="#">RO</a>
+            </li>
+            <li>
+              <a href="ogrenci-girisi.html" class="student-login-btn">Öğrenci Girişi</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="mobile-nav-toggle">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+
+      <div class="announcements-page-banner">
+        <h1>DUYURULAR</h1>
+      </div>
+
+      <div class="mobile-menu">
+        <div class="mobile-menu-header">
+          <div class="mobile-logo">
+            <a href="index.html">
+              <img src="images/textCrem.png" alt="Logo" />
+            </a>
+          </div>
+          <div class="mobile-menu-close">
+            <i class="fas fa-times"></i>
+          </div>
+        </div>
+        <ul>
+          <li>
+            <a href="ogrenci-girisi.html" class="mobil-student-login-btn">Öğrenci Girişi</a>
+          </li>
+          <hr />
+          <li><a href="#">EN</a></li>
+          <hr />
+          <li><a href="#">RO</a></li>
+          <hr />
+          <li><a href="index.html">Ana Sayfa</a></li>
+          <hr />
+          <li><a href="hakkımızda.html">Hakkımızda</a></li>
+          <hr />
+          <li><a href="kurslar.html">Kurslar</a></li>
+          <hr />
+          <li><a href="etkinlikler.html">Etkinlikler</a></li>
+          <hr />
+          <li><a href="duyurular.html">Duyurular</a></li>
+          <hr />
+          <li><a href="galeri.html">Galeri</a></li>
+          <hr />
+          <li><a href="iletisim.html">İletişim</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main class="announcements-home">
+      <div class="container">
+        <div class="announcement-grid" id="announcements-list">
+          <div class="announcement-card has-image">
+            <img src="images/duyuru1.jpg" alt="Workshop Duyurusu" class="card-image" />
+            <div class="card-content">
+              <h3>Modern Dans Workshop'u</h3>
+              <p>Bu ayki özel modern dans workshop'umuz için kayıtlar açıldı. Ünlü koreograf ile tanışma fırsatı!</p>
+              <span>28 Haziran 2025</span>
+            </div>
+          </div>
+          <div class="announcement-card">
+            <div class="card-content">
+              <h3>Çocuklar İçin Yaz Dans Kampı</h3>
+              <p>
+                Çocuklarınızın yaz tatilini dansla eğlenceli hale getirin. Erken rezervasyon indirimleri devam ediyor.
+              </p>
+              <span>20 Haziran 2025</span>
+            </div>
+          </div>
+        </div>
+        <div class="pagination">
+          <button id="prevPage" class="pagination-btn" disabled>
+            <i class="ri-arrow-left-line"></i>
+            Önceki
+          </button>
+          <div id="pageNumbers" class="page-numbers"></div>
+          <button id="nextPage" class="pagination-btn">
+            Sonraki
+            <i class="ri-arrow-right-line"></i>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col about-us">
+            <a href="index.html" class="footer-logo">
+              <img src="images/logoRosu3.png" alt="ROMANYA AKADEMİ Logo" />
+            </a>
+            <p>
+              Vali Osman Dance Academy, dans sanatını tutkuyla öğreten, ruhunuzu ve bedeninizi dansla birleştiren bir
+              eğitim kurumudur. Her seviyeden dansçıya kapımız açık!
+            </p>
+            <div class="footer-social-icons">
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-col quick-links">
+            <ul>
+              <li><a href="hakkımızda.html">Hakkımızda</a></li>
+              <li><a href="kurslar.html">Kurslarımız</a></li>
+              <li><a href="etkinlikler.html">Etkinlikler</a></li>
+              <li><a href="duyurular.html">Duyurular</a></li>
+              <li><a href="galeri.html">Galeri</a></li>
+              <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+          </div>
+          <div class="footer-col contact-info">
+            <h4>Bize Ulaşın</h4>
+            <ul>
+              <li>
+                <i class="ri-map-pin-line"></i>
+                Bulevardul Aviatorilor, Nr. 15, Sector 1, București, România
+              </li>
+              <li>
+                <i class="ri-phone-line"></i>
+                +40 123 456 789
+              </li>
+              <li>
+                <i class="ri-mail-line"></i>
+                info@romanyaakademi.com
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 VALİ OSMAN DANCE ACADEMY. Tüm Hakları Saklıdır.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobil Navigasyon İşlevselliği
+      const mobileNavToggle = document.querySelector(".mobile-nav-toggle");
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const mobileMenuClose = document.querySelector(".mobile-menu-close");
+
+      // Hamburger ikonuna tıklayınca menüyü aç
+      mobileNavToggle.addEventListener("click", () => {
+        mobileMenu.classList.add("open");
+      });
+
+      // Kapatma ikonuna tıklayınca menüyü kapat
+      mobileMenuClose.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+      });
+
+      // Sayfa değişimi
+      document.addEventListener("DOMContentLoaded", function () {
+        // Doğru elementi seçtiğimizden emin olalım.
+        // Eğer tüm kartlar tek bir .announcement-grid içinde ise, bu şekilde seçmeliyiz.
+        const announcementsContainer = document.querySelector(".announcement-grid");
+        const announcementCards = Array.from(announcementsContainer.querySelectorAll(".announcement-card"));
+        const prevButton = document.getElementById("prevPage");
+        const nextPage = document.getElementById("nextPage");
+        const pageNumbersContainer = document.getElementById("pageNumbers");
+
+        const cardsPerPage = 4; // Her sayfada gösterilecek duyuru sayısı
+        let currentPage = 1;
+        const totalPages = Math.ceil(announcementCards.length / cardsPerPage);
+
+        function displayPage(page) {
+          // Tüm kartları gizle
+          announcementCards.forEach((card) => {
+            card.style.display = "none";
+          });
+
+          // Mevcut sayfanın kartlarını göster
+          const start = (page - 1) * cardsPerPage;
+          const end = start + cardsPerPage;
+          for (let i = start; i < end && i < announcementCards.length; i++) {
+            announcementCards[i].style.display = "flex"; // Duyuru kartlarınız flex olduğu için 'flex' kullandım
+          }
+
+          // Sayfa numaralarını güncelle
+          updatePaginationButtons();
+          updatePageNumbers();
+        }
+
+        function updatePaginationButtons() {
+          prevButton.disabled = currentPage === 1;
+          nextPage.disabled = currentPage === totalPages;
+        }
+
+        function updatePageNumbers() {
+          pageNumbersContainer.innerHTML = ""; // Önceki sayfa numaralarını temizle
+          for (let i = 1; i <= totalPages; i++) {
+            const pageNumber = document.createElement("span");
+            pageNumber.classList.add("page-number");
+            pageNumber.textContent = i;
+            if (i === currentPage) {
+              pageNumber.classList.add("active");
+            }
+            pageNumber.addEventListener("click", () => {
+              currentPage = i;
+              displayPage(currentPage);
+              // Sayfa atlandığında ekranı yukarı kaydırabilirsiniz (isteğe bağlı)
+              window.scrollTo({ top: announcementsContainer.offsetTop - 100, behavior: "smooth" });
+            });
+            pageNumbersContainer.appendChild(pageNumber);
+          }
+        }
+
+        // Olay Dinleyicileri
+        prevButton.addEventListener("click", () => {
+          if (currentPage > 1) {
+            currentPage--;
+            displayPage(currentPage);
+            window.scrollTo({ top: announcementsContainer.offsetTop - 100, behavior: "smooth" });
+          }
+        });
+
+        nextPage.addEventListener("click", () => {
+          if (currentPage < totalPages) {
+            currentPage++;
+            displayPage(currentPage);
+            window.scrollTo({ top: announcementsContainer.offsetTop - 100, behavior: "smooth" });
+          }
+        });
+
+        // İlk sayfayı yükle
+        displayPage(currentPage);
+      });
+    </script>
+  </body>
+</html>

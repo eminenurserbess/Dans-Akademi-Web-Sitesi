@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Yönetim Paneli | Vali Osman Dance Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+      :root {
+        --primary-color: #dd5928;
+        --primary-color-light: #f07047;
+        --primary-color-dark: #c04a1f;
+        --text-light: #eae0c8;
+        --text-dark: #333;
+        --text-gray: #666;
+        --header-bg: rgba(0, 0, 0, 0.7);
+        --header-background-solid: #817469;
+        --header-background-light: #968b81;
+        --shadow-color: rgba(0, 0, 0, 0.08);
+        --success-color: #28a745;
+        --danger-color: #dc3545;
+        --warning-color: #ffc107;
+        --info-color: #17a2b8;
+        --border-radius: 6px;
+        --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: #f9f7f5;
+        display: flex;
+        min-height: 100vh;
+        color: var(--text-dark);
+        line-height: 1.6;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 280px;
+        background-color: var(--header-background-solid);
+        color: var(--text-light);
+        height: 100vh;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        z-index: 100;
+        overflow: hidden;
+      }
+
+      .sidebar .logo {
+        padding: 20px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        flex-shrink: 0;
+      }
+
+      .sidebar .main-nav {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px 0;
+      }
+
+      .sidebar .main-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .sidebar .main-nav li a {
+        display: flex;
+        align-items: center;
+        padding: 16px 30px;
+        text-decoration: none;
+        color: var(--text-light);
+        font-size: 13.5px;
+        font-weight: 500;
+        position: relative;
+        transition: all 0.2s ease;
+      }
+
+      .sidebar .main-nav li a:hover {
+        background-color: var(--header-background-light);
+      }
+
+      .sidebar .main-nav li.active a {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .sidebar .sidebar-footer {
+        padding: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        flex-shrink: 0;
+      }
+
+      .sidebar .sidebar-footer a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--text-light);
+        padding: 10px;
+        border-radius: 4px;
+        background-color: var(--primary-color);
+        transition: background-color 0.2s ease;
+      }
+
+      .sidebar .sidebar-footer a:hover {
+        background-color: var(--primary-color-dark);
+      }
+
+      .sidebar .sidebar-footer a i {
+        margin-right: 10px;
+      }
+
+      .sidebar-close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        color: var(--text-light);
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 102;
+        display: none; /* Varsayılan olarak gizli, mobil'de gösterilecek */
+      }
+
+      /* Main Content */
+      main {
+        flex: 1;
+        margin-left: 280px;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* Content Panel */
+      .content-panel {
+        flex: 1;
+        padding: 30px;
+      }
+
+      .content-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .simplified-content-management {
+        max-width: 1500px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      /**--- ORTAK ALANLAR ---*/
+      .content-item {
+        background-color: #ffffff;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        padding: 25px;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .content-item:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .content-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+      }
+
+      .content-header h3 {
+        margin: 0;
+        font-size: 18px;
+        color: var(--primary-color);
+        font-weight: 800;
+      }
+
+      /* Arama kutusu başlık ile yan yana hizalanır */
+      .content-header .search-input {
+        max-width: 300px;
+      }
+
+      .content-body {
+        padding: 10px 0;
+      }
+
+      /* Button Styles */
+      .btn {
+        padding: 8px 16px;
+        border: none;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .btn i {
+        font-size: 14px;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-color-dark);
+      }
+
+      .btn-success {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .btn-success:hover {
+        background-color: #218838;
+      }
+
+      .btn-danger {
+        background-color: var(--danger-color);
+        color: white;
+      }
+
+      .btn-danger:hover {
+        background-color: #c82333;
+      }
+
+      .btn-info {
+        background-color: var(--info-color);
+        color: white;
+      }
+
+      .btn-info:hover {
+        background-color: #138496;
+      }
+
+      .btn-sm {
+        padding: 6px 12px;
+        font-size: 13px;
+      }
+
+      .btn-icon {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border-radius: 50%;
+      }
+
+      /** Form Elements */
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        display: flex;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--text-dark);
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: var(--border-radius);
+        font-family: inherit;
+        font-size: 14px;
+        transition: border-color 0.3s;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(221, 89, 40, 0.2);
+      }
+
+      textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      /* Grid Layouts */
+      .grid {
+        display: grid;
+        gap: 15px;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      /* User List styles */
+      .user-list-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 20px;
+        background-color: #fff;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        margin-bottom: 15px;
+      }
+
+      .user-details {
+        flex: 1;
+        margin-right: 20px;
+      }
+
+      .user-details h4 {
+        margin: 0;
+        font-size: 16px;
+        color: var(--primary-color);
+      }
+
+      .user-details p {
+        margin: 5px 0 0;
+        font-size: 14px;
+        color: var(--text-gray);
+      }
+
+      .user-actions {
+        display: flex;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+
+      /* Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 101;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-content {
+        background-color: #fefefe;
+        padding: 30px;
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 20px var(--shadow-color);
+        max-width: 600px;
+        width: 90%;
+        animation: modal-open 0.3s ease-out;
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+      }
+
+      .modal-header h3 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--text-dark);
+      }
+
+      .modal-header .close-btn {
+        margin-left: 20px;
+      }
+
+      .close-btn {
+        background-color: #e9ecef;
+        color: var(--text-dark);
+      }
+
+      .modal-body {
+        max-height: 70vh;
+        overflow-y: auto;
+        padding-bottom: 20px;
+      }
+
+      .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+        margin-top: 10px;
+      }
+
+      @keyframes modal-open {
+        from {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* Responsive Design */
+
+      /* Tablet ve Masaüstü (769px ve üzeri) */
+      @media (min-width: 769px) {
+        body {
+          display: flex;
+          flex-direction: row;
+        }
+        .mobile-header {
+          display: none;
+        }
+        .sidebar-close-btn {
+          display: none;
+        }
+        .desktop-logo {
+          display: block;
+        }
+        .sidebar {
+          left: 0;
+        }
+        main {
+          margin-left: 280px;
+        }
+      }
+
+      /* Ekstra tablet boyutları (992px ve altı) */
+      @media (max-width: 992px) {
+        .sidebar {
+          width: 240px;
+        }
+        main {
+          margin-left: 240px;
+        }
+        .grid-3 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* Mobil görünüm (768px ve altı) */
+      @media (max-width: 768px) {
+        body {
+          flex-direction: column;
+          font-size: 14px;
+          line-height: 1.5;
+        }
+
+        .sidebar {
+          position: fixed;
+          top: 0px;
+          left: -280px; /* Başlangıçta gizli */
+          width: 280px;
+          transition: left 0.3s ease;
+          z-index: 102; /* Overlay'den daha yüksek */
+        }
+        .sidebar .main-nav {
+          margin-top: 40px;
+        }
+        .sidebar.active {
+          left: 0; /* Açıkken görünür */
+        }
+
+        .sidebar-close-btn {
+          display: block; /* Mobil görünümde göster */
+        }
+
+        main {
+          margin-left: 0;
+          padding-top: 70px;
+          width: 100%;
+          overflow-x: hidden;
+        }
+
+        .main-container {
+          flex: 1;
+        }
+
+        .content-wrapper {
+          padding: 0 15px;
+        }
+
+        .grid-2,
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+        .content-item {
+          padding: 20px;
+        }
+
+        .mobile-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 15px 20px;
+          background-color: var(--header-background-solid);
+          color: var(--text-light);
+          position: fixed;
+          top: 0;
+          width: 100%;
+          z-index: 101;
+          box-shadow: var(--box-shadow);
+        }
+
+        .mobile-header .logo h5 {
+          font-size: 15px;
+          margin-left: 15px;
+        }
+
+        .hamburger-menu {
+          background: transparent;
+          border: none;
+          color: white;
+          font-size: 24px;
+          cursor: pointer;
+        }
+
+        .desktop-logo {
+          display: none;
+        }
+
+        .overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 100;
+          display: none;
+        }
+
+        .overlay.active {
+          display: block;
+        }
+
+        .course-list-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .course-list-image {
+          width: 0%;
+          max-width: 250px;
+          margin: 0 auto 15px;
+        }
+
+        .course-list-actions {
+          margin-top: 15px;
+          display: flex;
+          justify-content: center;
+        }
+
+        .upload-section {
+          flex-direction: column;
+        }
+
+        .upload-area {
+          max-width: 100%;
+          margin: 0 0 15px 0;
+        }
+        .content-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px; /* Başlık ve arama kutusu arasına boşluk ekler */
+        }
+
+        .content-header .search-input {
+          width: 100%; /* Arama kutusunu tam genişlik yapar */
+          max-width: 100%;
+        }
+        .user-list-item {
+          flex-direction: column; /* Bilgileri ve butonları alt alta getirir */
+          align-items: stretch; /* İçeriklerin tam genişlikte olmasını sağlar */
+          gap: 15px; /* Bilgiler ve butonlar arasına boşluk ekler */
+          padding: 20px;
+        }
+
+        .user-details {
+          margin-right: 0;
+          margin-bottom: 15px; /* Detaylar ve butonlar arasına ek boşluk */
+        }
+
+        .user-actions {
+          justify-content: flex-start; /* Butonları sola hizalar */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mobile-header">
+      <button class="hamburger-menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="logo">
+        <h5>Vali Osman Dance Academy Yönetim Paneli</h5>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <button class="sidebar-close-btn"><i class="fas fa-times"></i></button>
+      <div class="logo">
+        <h4>Vali Osman Dance Academy Yönetim Paneli</h4>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li>
+            <a href="index.html"><span>Anasayfa</span></a>
+          </li>
+          <li>
+            <a href="hakkımızda.html"><span>Hakkımızda</span></a>
+          </li>
+          <li>
+            <a href="kurslar.html"><span>Kurslar</span></a>
+          </li>
+          <li>
+            <a href="etkinlikler.html"><span>Etkinlikler</span></a>
+          </li>
+          <li>
+            <a href="duyurular.html"><span>Duyurular</span></a>
+          </li>
+          <li>
+            <a href="galeri.html"><span>Galeri</span></a>
+          </li>
+          <li>
+            <a href="iletisim.html"><span>İletişim</span></a>
+          </li>
+          <li class="active">
+            <a href="kullanici-bilgileri.html"><span>Kullanıcı Bilgileri</span></a>
+          </li>
+          <li>
+            <a href="raporlama.html"><span>Raporlama</span></a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="#">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Çıkış Yap</span>
+        </a>
+      </div>
+    </aside>
+
+    <main>
+      <div class="content-panel">
+        <div class="content-wrapper">
+          <div class="simplified-content-management">
+            <div class="content-item">
+              <div class="content-header">
+                <h3>Yeni Kullanıcı Ekle</h3>
+              </div>
+              <div class="content-body">
+                <button class="btn btn-primary" id="btn-add-user">
+                  <i class="fas fa-plus"></i>
+                  Yeni Kullanıcı Ekle
+                </button>
+              </div>
+            </div>
+
+            <div class="content-item">
+              <div class="content-header">
+                <h3>Kayıtlı Öğrenciler</h3>
+                <input
+                  type="text"
+                  id="user-search-input"
+                  class="form-control search-input"
+                  placeholder="Ad Soyad ile ara..."
+                />
+              </div>
+              <div class="content-body" id="user-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="user-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modal-title">Yeni Kullanıcı Ekle</h3>
+          <span class="close-btn">&times;</span>
+        </div>
+        <div class="modal-body">
+          <form id="user-form">
+            <input type="hidden" id="user-id" />
+            <div class="form-group">
+              <label for="user-name" class="form-label">Ad Soyad</label>
+              <input type="text" class="form-control" id="user-name" required />
+            </div>
+            <div class="form-group">
+              <label for="user-email" class="form-label">E-posta</label>
+              <input type="email" class="form-control" id="user-email" required />
+            </div>
+            <div class="form-group">
+              <label for="user-password" class="form-label">Şifre</label>
+              <input type="text" class="form-control" id="user-password" required />
+            </div>
+            <div class="form-group">
+              <label for="user-phone" class="form-label">Telefon</label>
+              <input type="tel" class="form-control" id="user-phone" />
+            </div>
+            <div class="form-group">
+              <label for="user-address" class="form-label">Adres</label>
+              <textarea class="form-control" id="user-address"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="user-payment" class="form-label">Ödeme Bilgileri</label>
+              <textarea class="form-control" id="user-payment"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="user-courses" class="form-label">Kayıtlı Olduğu Kurslar</label>
+              <textarea
+                class="form-control"
+                id="user-courses"
+                placeholder="Örnek: Salsa Başlangıç, Bachata Orta Seviye"
+              ></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary close-btn">İptal</button>
+          <button class="btn btn-success" id="btn-save-user">Kaydet</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <script>
+      const sidebar = document.querySelector(".sidebar");
+      const hamburgerBtn = document.querySelector(".hamburger-menu");
+      const sidebarCloseBtn = document.querySelector(".sidebar-close-btn");
+      const overlay = document.querySelector(".overlay");
+
+      function openSidebar() {
+        sidebar.classList.add("active");
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeSidebar() {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      if (hamburgerBtn) {
+        hamburgerBtn.addEventListener("click", openSidebar);
+      }
+
+      if (sidebarCloseBtn) {
+        sidebarCloseBtn.addEventListener("click", closeSidebar);
+      }
+
+      if (overlay) {
+        overlay.addEventListener("click", closeSidebar);
+      }
+
+      sidebar.querySelectorAll(".main-nav li a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 768) {
+            closeSidebar();
+          }
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const userListContainer = document.getElementById("user-list");
+        const searchInput = document.getElementById("user-search-input");
+        const addUserBtn = document.getElementById("btn-add-user");
+        const userModal = document.getElementById("user-modal");
+        const modalTitle = document.getElementById("modal-title");
+        const form = document.getElementById("user-form");
+        const saveUserBtn = document.getElementById("btn-save-user");
+        const closeModalBtns = document.querySelectorAll(".close-btn");
+
+        // API URL
+        const API_URL = "api/kullanici_bilgileri.php";
+
+        /**
+         * API'den kullanıcı verilerini çeker ve listeyi render eder.
+         */
+        async function fetchAndRenderUsers() {
+          try {
+            const response = await fetch(API_URL);
+            if (!response.ok) {
+              throw new Error(`HTTP Hata! Durum: ${response.status}`);
+            }
+            const users = await response.json();
+            renderUserList(users);
+          } catch (error) {
+            console.error("Kullanıcılar getirilirken bir hata oluştu:", error);
+            userListContainer.innerHTML = "<p>Kullanıcı verileri yüklenemedi. Lütfen daha sonra tekrar deneyin.</p>";
+          }
+        }
+
+        /**
+         * Kullanıcı listesini ekrana render eder.
+         * @param {Array} users - Gösterilecek kullanıcı dizisi.
+         */
+        function renderUserList(users) {
+          userListContainer.innerHTML = "";
+          if (users.length === 0) {
+            userListContainer.innerHTML = "<p>Kayıtlı öğrenci bulunamadı.</p>";
+            return;
+          }
+          users.forEach((user) => {
+            const userItem = document.createElement("div");
+            userItem.className = "user-list-item";
+            userItem.innerHTML = `
+          <div class="user-details">
+            <h4>${user.ad_soyad}</h4>
+            <p><strong>E-posta:</strong> ${user.email}</p>
+            <p><strong>Telefon:</strong> ${user.telefon || "Yok"}</p>
+            <p><strong>Adres:</strong> ${user.adres || "Yok"}</p>
+            <p><strong>Ödeme Bilgileri:</strong> ${user.odeme_bilgileri || "Yok"}</p>
+            <p><strong>Kayıtlı Kurslar:</strong> ${user.kayitli_kurslar || "Yok"}</p>
+          </div>
+          <div class="user-actions">
+            <button class="btn btn-info btn-sm btn-edit-user" data-id="${user.id}">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-danger btn-sm btn-delete-user" data-id="${user.id}">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        `;
+            userListContainer.appendChild(userItem);
+          });
+        }
+
+        /**
+         * Kullanıcıları isme göre filtreler ve listeyi render eder.
+         */
+        async function filterAndRenderUsers() {
+          const searchTerm = searchInput.value.toLocaleLowerCase("tr-TR");
+          try {
+            const response = await fetch(API_URL);
+            const users = await response.json();
+            const filteredUsers = users.filter((user) => {
+              const nameMatch = user.ad_soyad.toLocaleLowerCase("tr-TR").includes(searchTerm);
+              const emailMatch = user.email.toLocaleLowerCase("tr-TR").includes(searchTerm);
+              const phoneMatch = (user.telefon || "").toLocaleLowerCase("tr-TR").includes(searchTerm);
+              const addressMatch = (user.adres || "").toLocaleLowerCase("tr-TR").includes(searchTerm);
+              const paymentMatch = (user.odeme_bilgileri || "").toLocaleLowerCase("tr-TR").includes(searchTerm);
+              const coursesMatch = (user.kayitli_kurslar || "").toLocaleLowerCase("tr-TR").includes(searchTerm);
+              return nameMatch || emailMatch || phoneMatch || addressMatch || paymentMatch || coursesMatch;
+            });
+            renderUserList(filteredUsers);
+          } catch (error) {
+            console.error("Kullanıcılar filtrelenirken bir hata oluştu:", error);
+          }
+        }
+
+        /**
+         * Modal'ı açar ve form verilerini doldurur.
+         * @param {Object} [user] - Düzenlenecek kullanıcı objesi (yeni kullanıcı için boş bırakılabilir).
+         */
+        function openModal(user = null) {
+          form.reset();
+          if (user) {
+            modalTitle.textContent = "Kullanıcıyı Düzenle";
+            document.getElementById("user-id").value = user.id;
+            document.getElementById("user-name").value = user.ad_soyad;
+            document.getElementById("user-email").value = user.email;
+            document.getElementById("user-phone").value = user.telefon;
+            document.getElementById("user-address").value = user.adres;
+            document.getElementById("user-payment").value = user.odeme_bilgileri;
+            document.getElementById("user-courses").value = user.kayitli_kurslar;
+            document.getElementById("user-password").disabled = true;
+          } else {
+            modalTitle.textContent = "Yeni Kullanıcı Ekle";
+            document.getElementById("user-id").value = "";
+            document.getElementById("user-password").disabled = false;
+          }
+          userModal.style.display = "flex";
+        }
+
+        /**
+         * Modal'ı kapatır.
+         */
+        function closeModal() {
+          userModal.style.display = "none";
+        }
+
+        /**
+         * Form verilerini alır ve API'ye POST veya PUT isteği gönderir.
+         */
+        async function saveUser(e) {
+          e.preventDefault();
+
+          const userId = document.getElementById("user-id").value;
+          const data = {
+            ad_soyad: document.getElementById("user-name").value,
+            email: document.getElementById("user-email").value,
+            telefon: document.getElementById("user-phone").value,
+            adres: document.getElementById("user-address").value,
+            odeme_bilgileri: document.getElementById("user-payment").value,
+            kayitli_kurslar: document.getElementById("user-courses").value,
+          };
+
+          const passwordInput = document.getElementById("user-password");
+          if (!passwordInput.disabled && passwordInput.value) {
+            data.sifre = passwordInput.value;
+          }
+
+          const method = userId ? "PUT" : "POST";
+          const body = userId ? { ...data, id: parseInt(userId) } : data;
+
+          try {
+            const response = await fetch(API_URL, {
+              method: method,
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(body),
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+              alert(result.message);
+              closeModal();
+              fetchAndRenderUsers();
+            } else {
+              alert(`Hata: ${result.error}`);
+            }
+          } catch (error) {
+            console.error("İşlem sırasında bir hata oluştu:", error);
+            alert("İşlem sırasında bir hata oluştu. Lütfen tekrar deneyin.");
+          }
+        }
+
+        /**
+         * Kullanıcıyı silmek için API'ye DELETE isteği gönderir.
+         * @param {number} userId - Silinecek kullanıcının ID'si.
+         */
+        async function deleteUser(userId) {
+          if (!confirm("Bu kullanıcıyı silmek istediğinizden emin misiniz?")) {
+            return;
+          }
+
+          try {
+            const response = await fetch(API_URL, {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ id: userId }),
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+              alert(result.message);
+              fetchAndRenderUsers();
+            } else {
+              alert(`Hata: ${result.error}`);
+            }
+          } catch (error) {
+            console.error("Silme işlemi sırasında bir hata oluştu:", error);
+            alert("Silme işlemi sırasında bir hata oluştu. Lütfen tekrar deneyin.");
+          }
+        }
+
+        // --- Olay Dinleyicileri ---
+
+        // Sayfa yüklendiğinde kullanıcı listesini çek
+        fetchAndRenderUsers();
+
+        addUserBtn.addEventListener("click", () => openModal());
+        closeModalBtns.forEach((btn) => btn.addEventListener("click", closeModal));
+        userModal.addEventListener("click", (e) => {
+          if (e.target === userModal) {
+            closeModal();
+          }
+        });
+
+        searchInput.addEventListener("input", filterAndRenderUsers);
+        saveUserBtn.addEventListener("click", saveUser);
+
+        userListContainer.addEventListener("click", (e) => {
+          const editBtn = e.target.closest(".btn-edit-user");
+          const deleteBtn = e.target.closest(".btn-delete-user");
+
+          if (editBtn) {
+            const userId = parseInt(editBtn.dataset.id);
+            fetch(`${API_URL}?id=${userId}`)
+              .then((response) => response.json())
+              .then((user) => {
+                if (user && !user.error) {
+                  openModal(user);
+                } else {
+                  alert("Kullanıcı bulunamadı.");
+                }
+              })
+              .catch((error) => {
+                console.error("Kullanıcı detayları getirilirken hata:", error);
+                alert("Kullanıcı detayları getirilemedi.");
+              });
+          }
+
+          if (deleteBtn) {
+            const userId = parseInt(deleteBtn.dataset.id);
+            deleteUser(userId);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

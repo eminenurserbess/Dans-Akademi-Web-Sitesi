@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yönetim Paneli | Vali Osman Dance Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+      :root {
+        --primary-color: #dd5928;
+        --primary-color-light: #f07047;
+        --primary-color-dark: #c04a1f;
+        --text-light: #eae0c8;
+        --text-dark: #333;
+        --text-gray: #666;
+        --header-bg: rgba(0, 0, 0, 0.7);
+        --header-background-solid: #817469;
+        --header-background-light: #968b81;
+        --shadow-color: rgba(0, 0, 0, 0.08);
+        --success-color: #28a745;
+        --danger-color: #dc3545;
+        --warning-color: #ffc107;
+        --info-color: #17a2b8;
+        --border-radius: 6px;
+        --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: #f9f7f5;
+        display: flex;
+        min-height: 100vh;
+        color: var(--text-dark);
+        line-height: 1.6;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 280px;
+        background-color: var(--header-background-solid);
+        color: var(--text-light);
+        height: 100vh;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        z-index: 100;
+        overflow: hidden;
+      }
+
+      .sidebar .logo {
+        padding: 20px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        flex-shrink: 0;
+      }
+
+      .sidebar .main-nav {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px 0;
+      }
+
+      .sidebar .main-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .sidebar .main-nav li a {
+        display: flex;
+        align-items: center;
+        padding: 16px 30px;
+        text-decoration: none;
+        color: var(--text-light);
+        font-size: 13.5px;
+        font-weight: 500;
+        position: relative;
+        transition: all 0.2s ease;
+      }
+
+      .sidebar .main-nav li a:hover {
+        background-color: var(--header-background-light);
+      }
+
+      .sidebar .main-nav li.active a {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .sidebar .sidebar-footer {
+        padding: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        flex-shrink: 0;
+      }
+
+      .sidebar .sidebar-footer a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--text-light);
+        padding: 10px;
+        border-radius: 4px;
+        background-color: var(--primary-color);
+        transition: background-color 0.2s ease;
+      }
+
+      .sidebar .sidebar-footer a:hover {
+        background-color: var(--primary-color-dark);
+      }
+
+      .sidebar .sidebar-footer a i {
+        margin-right: 10px;
+      }
+
+      .sidebar-close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        color: var(--text-light);
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 102;
+        display: none; /* Varsayılan olarak gizli, mobil'de gösterilecek */
+      }
+
+      /* Main Content */
+      main {
+        flex: 1;
+        margin-left: 280px;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* Content Panel */
+      .content-panel {
+        flex: 1;
+        padding: 30px;
+      }
+
+      .content-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .simplified-content-management {
+        max-width: 1500px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      /**--- ORTAK ALANLAR ---*/
+      .content-item {
+        background-color: #ffffff;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        padding: 25px;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .content-item:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .content-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+      }
+
+      .content-header h3 {
+        margin: 0;
+        font-size: 18px;
+        color: var(--primary-color);
+        font-weight: 800;
+      }
+
+      .content-body {
+        padding: 10px 0;
+      }
+
+      /* Button Styles */
+      .btn {
+        padding: 8px 16px;
+        border: none;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .btn i {
+        font-size: 14px;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-color-dark);
+      }
+
+      .btn-success {
+        background-color: var(--success-color);
+        color: white;
+      }
+
+      .btn-success:hover {
+        background-color: #218838;
+      }
+
+      .btn-danger {
+        background-color: var(--danger-color);
+        color: white;
+      }
+
+      .btn-danger:hover {
+        background-color: #c82333;
+      }
+
+      .btn-info {
+        background-color: var(--info-color);
+        color: white;
+      }
+
+      .btn-info:hover {
+        background-color: #138496;
+      }
+
+      .btn-sm {
+        padding: 6px 12px;
+        font-size: 13px;
+      }
+
+      .btn-icon {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border-radius: 50%;
+      }
+
+      /** Form Elements  ANA SAYFA METNİ- FOOTER*/
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        display: flex;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--text-dark);
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: var(--border-radius);
+        font-family: inherit;
+        font-size: 14px;
+        transition: border-color 0.3s;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(221, 89, 40, 0.2);
+      }
+
+      textarea.form-control {
+        min-height: 40px;
+        resize: vertical;
+      }
+
+      .video-title {
+        width: 50%;
+      }
+
+      .video-link {
+        width: 50%;
+      }
+
+      /* Media Upload Sections */
+      .upload-section {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+      }
+      .logo-display-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .upload-area {
+        border: 2px dashed #ddd;
+        border-radius: var(--border-radius);
+        padding: 30px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        max-width: 250px;
+        width: 100%;
+        margin-right: 50px;
+      }
+
+      .upload-area:hover {
+        border-color: var(--primary-color);
+        background-color: rgba(221, 89, 40, 0.05);
+      }
+
+      .upload-area i {
+        font-size: 40px;
+        color: var(--primary-color);
+        margin-bottom: 10px;
+      }
+
+      .upload-area p {
+        margin: 0;
+        color: var(--text-gray);
+      }
+
+      .media-preview {
+        position: relative;
+        width: 100%;
+        max-width: 200px;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        border: 1px solid #eee;
+      }
+
+      .media-preview img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .media-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .file-info {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        font-size: 14px;
+        color: var(--text-gray);
+      }
+
+      .file-info i {
+        margin-right: 8px;
+      }
+
+      /* Grid Layouts */
+      .grid {
+        display: grid;
+        gap: 15px;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      /* Social Media Inputs */
+      .social-input-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        gap: 10px;
+      }
+
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f5f5;
+        border-radius: var(--border-radius);
+        color: var(--text-gray);
+        font-size: 18px;
+      }
+
+      /* Video Items */
+      .video-item {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      /* Alert Messages */
+      .alert {
+        padding: 12px 15px;
+        border-radius: var(--border-radius);
+        margin-bottom: 20px;
+        font-size: 14px;
+        display: none;
+      }
+
+      .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+
+      .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+
+      /*Slider */
+      .slider-container {
+        display: flex; /* İçindeki elemanları yan yana dizer */
+        gap: 20px; /* Elemanlar arasına 20 piksel boşluk bırakır */
+        align-items: flex-start; /* Elemanları en üstten hizalar */
+      }
+
+      /* Animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .content-item {
+        animation: fadeIn 0.3s ease-out forwards;
+      }
+
+      .form-control {
+        width: 100%;
+      }
+
+      textarea.form-control {
+        min-height: 120px;
+      }
+
+      .upload-area {
+        margin-right: 0;
+        max-width: 300px;
+      }
+
+      /* Tablet ve Masaüstü (769px ve üzeri) */
+      @media (min-width: 769px) {
+        body {
+          display: flex;
+          flex-direction: row;
+        }
+        .mobile-header {
+          display: none;
+        }
+        .sidebar-close-btn {
+          display: none;
+        }
+        .desktop-logo {
+          display: block;
+        }
+        .sidebar {
+          left: 0;
+        }
+        main {
+          margin-left: 280px;
+        }
+      }
+
+      /* Ekstra tablet boyutları (992px ve altı) */
+      @media (max-width: 992px) {
+        .sidebar {
+          width: 240px;
+        }
+        main {
+          margin-left: 240px;
+        }
+        .grid-3 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* Mobil görünüm (768px ve altı) */
+      @media (max-width: 768px) {
+        body {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          position: fixed;
+          top: 0px;
+          left: -280px; /* Başlangıçta gizli */
+          width: 280px;
+          transition: left 0.3s ease;
+          z-index: 102; /* Overlay'den daha yüksek */
+        }
+        .sidebar .main-nav {
+          margin-top: 40px;
+        }
+        .sidebar.active {
+          left: 0; /* Açıkken görünür */
+        }
+
+        .sidebar-close-btn {
+          display: block; /* Mobil görünümde göster */
+        }
+
+        main {
+          margin-left: 0;
+          padding-top: 70px;
+          width: 100%;
+          overflow-x: hidden;
+        }
+
+        .main-container {
+          flex: 1;
+        }
+
+        .content-wrapper {
+          padding: 0 15px;
+        }
+
+        .grid-2,
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+        .content-item {
+          padding: 20px;
+        }
+
+        .mobile-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 15px 20px;
+          background-color: var(--header-background-solid);
+          color: var(--text-light);
+          position: fixed;
+          top: 0;
+          width: 100%;
+          z-index: 101;
+          box-shadow: var(--box-shadow);
+        }
+
+        .mobile-header .logo h5 {
+          font-size: 15px;
+          margin-left: 15px;
+        }
+
+        .hamburger-menu {
+          background: transparent;
+          border: none;
+          color: white;
+          font-size: 24px;
+          cursor: pointer;
+        }
+
+        .desktop-logo {
+          display: none;
+        }
+
+        .overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 100;
+          display: none;
+        }
+
+        .overlay.active {
+          display: block;
+        }
+
+        .course-list-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .course-list-image {
+          width: 0%;
+          max-width: 250px;
+          margin: 0 auto 15px;
+        }
+
+        .course-list-actions {
+          margin-top: 15px;
+          display: flex;
+          justify-content: center;
+        }
+
+        .upload-section {
+          flex-direction: column;
+        }
+
+        .upload-area {
+          max-width: 100%;
+          margin: 0 0 15px 0;
+        }
+      }
+
+      .delete-button-with-spacing {
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mobile-header">
+      <button class="hamburger-menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="logo">
+        <h5>Vali Osman Dance Academy Yönetim Paneli</h5>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <button class="sidebar-close-btn"><i class="fas fa-times"></i></button>
+      <div class="logo desktop-logo">
+        <h4>Vali Osman Dance Academy Yönetim Paneli</h4>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li>
+            <a href="index.html">
+              <span>Anasayfa</span>
+            </a>
+          </li>
+          <li class="active">
+            <a href="hakkımızda.html">
+              <span>Hakkımızda</span>
+            </a>
+          </li>
+          <li>
+            <a href="kurslar.html">
+              <span>Kurslar</span>
+            </a>
+          </li>
+          <li>
+            <a href="etkinlikler.html">
+              <span>Etkinlikler</span>
+            </a>
+          </li>
+          <li>
+            <a href="duyurular.html">
+              <span>Duyurular</span>
+            </a>
+          </li>
+          <li>
+            <a href="galeri.html">
+              <span>Galeri</span>
+            </a>
+          </li>
+          <li>
+            <a href="iletisim.html">
+              <span>İletişim</span>
+            </a>
+          </li>
+          <li>
+            <a href="kullanici-bilgileri.html">
+              <span>Kullanıcı Bilgileri</span>
+            </a>
+          </li>
+          <li>
+            <a href="raporlama.html">
+              <span>Raporlama</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="#">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Çıkış Yap</span>
+        </a>
+      </div>
+    </aside>
+
+    <main>
+      <div class="content-panel">
+        <div class="content-wrapper">
+          <div class="simplified-content-management">
+            <div class="content-item" id="tarihce-bolumu">
+              <div class="content-header">
+                <h3>Tarihçe Kısmı</h3>
+                <div class="media-actions">
+                  <button class="btn btn-success btn-save" id="historySaveBtn">
+                    <i class="fas fa-save"></i>
+                    Kaydet
+                  </button>
+                </div>
+              </div>
+              <div class="content-body">
+                <div class="form-group">
+                  <label class="form-label">Tarihçe Başlığı</label>
+                  <input type="text" class="form-control" id="historyTitle" placeholder="Örn: Hikayemiz" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Tarihçe Açıklaması</label>
+                  <textarea
+                    class="form-control"
+                    id="historyDescription"
+                    rows="8"
+                    placeholder="Akademinin kuruluş hikayesini detaylı bir şekilde anlatın."
+                  ></textarea>
+                </div>
+              </div>
+              <div class="content-body">
+                <div class="form-group">
+                  <label class="form-label">Tarihçe Görseli</label>
+                  <div class="upload-section">
+                    <div class="upload-area" id="historyImageUploadArea">
+                      <i class="fas fa-upload"></i>
+                      <p>Görseli buraya sürükleyin veya tıklayın</p>
+                      <input type="file" id="historyImageInput" accept="image/*" hidden />
+                    </div>
+                    <div class="media-preview" id="historyImagePreviewContainer" style="display: none">
+                      <img src="" alt="Tarihçe Görseli Önizlemesi" id="historyImagePreview" />
+                      <button
+                        class="btn btn-danger btn-icon delete-image-btn"
+                        id="deleteHistoryImageBtn"
+                        style="position: absolute; top: 5px; right: 5px"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-item" id="misyon-bolumu">
+              <div class="content-header">
+                <h3>Misyonumuz Kısmı</h3>
+                <div class="media-actions">
+                  <button class="btn btn-success btn-save" id="missionSaveBtn">
+                    <i class="fas fa-save"></i>
+                    Kaydet
+                  </button>
+                </div>
+              </div>
+              <div class="content-body">
+                <div class="form-group">
+                  <label class="form-label">Misyonumuz Başlığı</label>
+                  <input type="text" class="form-control" id="missionTitle" placeholder="Örn: Misyonumuz" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Misyonumuz Açıklaması</label>
+                  <textarea
+                    class="form-control"
+                    id="missionDescription"
+                    rows="8"
+                    placeholder="Akademinin misyonunu açıklayan bir metin yazın."
+                  ></textarea>
+                </div>
+              </div>
+              <div class="content-body">
+                <div class="form-group">
+                  <label class="form-label">Misyonumuz Görseli</label>
+                  <div class="upload-section">
+                    <div class="upload-area" id="missionImageUploadArea">
+                      <i class="fas fa-upload"></i>
+                      <p>Görseli buraya sürükleyin veya tıklayın</p>
+                      <input type="file" id="missionImageInput" accept="image/*" hidden />
+                    </div>
+                    <div class="media-preview" id="missionImagePreviewContainer" style="display: none">
+                      <img src="" alt="Misyonumuz Görseli Önizlemesi" id="missionImagePreview" />
+                      <button
+                        class="btn btn-danger btn-icon delete-image-btn"
+                        id="deleteMissionImageBtn"
+                        style="position: absolute; top: 5px; right: 5px"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-item" id="vizyon-bolumu">
+              <div class="content-header">
+                <h3>Vizyonumuz Kısmı</h3>
+                <div class="media-actions">
+                  <button class="btn btn-success btn-save" id="visionSaveBtn">
+                    <i class="fas fa-save"></i>
+                    Kaydet
+                  </button>
+                </div>
+              </div>
+              <div class="content-body">
+                <div class="form-group">
+                  <label class="form-label">Vizyonumuz Başlığı</label>
+                  <input type="text" class="form-control" id="visionTitle" placeholder="Örn: Vizyonumuz" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Vizyonumuz Açıklaması</label>
+                  <textarea
+                    class="form-control"
+                    id="visionDescription"
+                    rows="8"
+                    placeholder="Akademinin vizyonunu açıklayan bir metin yazın."
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="content-item" id="degerler-bolumu">
+              <div class="content-header">
+                <h3>Değerlerimiz Kısmı</h3>
+                <div class="media-actions">
+                  <button class="btn btn-success btn-save" id="valuesSaveBtn">
+                    <i class="fas fa-save"></i>
+                    Kaydet
+                  </button>
+                </div>
+              </div>
+              <div class="content-body">
+                <div class="form-group">
+                  <label class="form-label">Değerlerimiz Başlığı</label>
+                  <input type="text" class="form-control" id="valuesTitle" placeholder="Örn: Temel Değerlerimiz" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Değerlerimiz Açıklaması</label>
+                  <textarea
+                    class="form-control"
+                    id="valuesDescription"
+                    rows="8"
+                    placeholder="Akademinin temel değerlerini açıklayan bir metin yazın."
+                  ></textarea>
+                </div>
+              </div>
+              <div class="content-body">
+                <div class="form-group">
+                  <label class="form-label">Değerlerimiz Görseli</label>
+                  <div class="upload-section">
+                    <div class="upload-area" id="valuesImageUploadArea">
+                      <i class="fas fa-upload"></i>
+                      <p>Görseli buraya sürükleyin veya tıklayın</p>
+                      <input type="file" id="valuesImageInput" accept="image/*" hidden />
+                    </div>
+                    <div class="media-preview" id="valuesImagePreviewContainer" style="display: none">
+                      <img src="" alt="Değerlerimiz Görseli Önizlemesi" id="valuesImagePreview" />
+                      <button
+                        class="btn btn-danger btn-icon delete-image-btn"
+                        id="deleteValuesImageBtn"
+                        style="position: absolute; top: 5px; right: 5px"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-item" id="yoneticiler-bolumu">
+              <div class="content-header">
+                <h3>Yöneticilerimiz Kısmı</h3>
+                <div class="media-actions">
+                  <button class="btn btn-success btn-save" id="managerSaveBtn">
+                    <i class="fas fa-save"></i>
+                    Kaydet
+                  </button>
+                </div>
+              </div>
+              <div class="content-body">
+                <div class="form-group">
+                  <label class="form-label">Yönetici Adı Soyadı</label>
+                  <input type="text" class="form-control" id="managerName" placeholder="Örn: Vali Osman" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Çalıştığı Alan</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="managerRole"
+                    placeholder="Örn: Kurucu Ortak, Baş Eğitmen"
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Yönetici Açıklaması</label>
+                  <textarea
+                    class="form-control"
+                    id="managerDescription"
+                    rows="4"
+                    placeholder="Yönetici hakkında kısa bir açıklama yazın."
+                  ></textarea>
+                </div>
+              </div>
+              <div class="content-body">
+                <div class="form-group">
+                  <label class="form-label">Yönetici Görseli</label>
+                  <div class="upload-section">
+                    <div class="upload-area" id="managerImageUploadArea">
+                      <i class="fas fa-upload"></i>
+                      <p>Görseli buraya sürükleyin veya tıklayın</p>
+                      <input type="file" id="managerImageInput" accept="image/*" hidden />
+                    </div>
+                    <div class="media-preview" id="managerImagePreviewContainer" style="display: none">
+                      <img src="" alt="Yönetici Görseli Önizlemesi" id="managerImagePreview" />
+                      <button
+                        class="btn btn-danger btn-icon delete-image-btn"
+                        id="deleteManagerImageBtn"
+                        style="position: absolute; top: 5px; right: 5px"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="content-item" id="yoneticiler-liste-bolumu">
+                <div class="content-header">
+                  <h3>Eklenen Yöneticiler</h3>
+                </div>
+                <div class="content-body">
+                  <div id="managerList" class="row"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="overlay"></div>
+
+    <script>
+      // ------------------------------------------------------------
+      // Sayfa DOM tamamen yüklendiğinde çalışacak ana başlangıç bloğu
+      // ------------------------------------------------------------
+      document.addEventListener("DOMContentLoaded", function () {
+        // ---------------------------------------
+        // API uç noktaları (backend PHP dosyaları)
+        // ---------------------------------------
+        const hakkimizdaApiUrl = "api/hakkimizda.php";
+        const yoneticilerApiUrl = "api/yoneticilerimiz.php";
+
+        // ------------------------------------------------------------------------------
+        // contentSections: Sayfadaki her içerik bölümüne ait form/önizleme elemanları
+        // tek bir nesnede toplanır. Böylece ilgili DOM elemanlarına kolayca erişilir.
+        // ------------------------------------------------------------------------------
+
+        // -- TARİHÇE BÖLÜMÜ: Başlık, açıklama, görsel upload & önizleme, kaydet/sil --
+        const contentSections = {
+          // Tarihçe form alanları ve medya önizleme kontrolü
+          tarihce: {
+            title: document.getElementById("historyTitle"),
+            description: document.getElementById("historyDescription"),
+            imageInput: document.getElementById("historyImageInput"),
+            imagePreview: document.getElementById("historyImagePreview"),
+            imagePreviewContainer: document.getElementById("historyImagePreviewContainer"),
+            uploadArea: document.getElementById("historyImageUploadArea"),
+            saveBtn: document.getElementById("historySaveBtn"),
+            deleteBtn: document.getElementById("deleteHistoryImageBtn"),
+          },
+
+          // -- MİSYON BÖLÜMÜ: Başlık, açıklama, görsel upload & önizleme, kaydet/sil --
+          misyon: {
+            title: document.getElementById("missionTitle"),
+            description: document.getElementById("missionDescription"),
+            imageInput: document.getElementById("missionImageInput"),
+            imagePreview: document.getElementById("missionImagePreview"),
+            imagePreviewContainer: document.getElementById("missionImagePreviewContainer"),
+            uploadArea: document.getElementById("missionImageUploadArea"),
+            saveBtn: document.getElementById("missionSaveBtn"),
+            deleteBtn: document.getElementById("deleteMissionImageBtn"),
+          },
+
+          // -- VİZYON BÖLÜMÜ: Başlık ve açıklama, görsel alanı yok --
+          vizyon: {
+            title: document.getElementById("visionTitle"),
+            description: document.getElementById("visionDescription"),
+            saveBtn: document.getElementById("visionSaveBtn"),
+          },
+
+          // -- DEĞERLER BÖLÜMÜ: Başlık, açıklama, görsel upload & önizleme, kaydet/sil --
+          degerler: {
+            title: document.getElementById("valuesTitle"),
+            description: document.getElementById("valuesDescription"),
+            imageInput: document.getElementById("valuesImageInput"),
+            imagePreview: document.getElementById("valuesImagePreview"),
+            imagePreviewContainer: document.getElementById("valuesImagePreviewContainer"),
+            uploadArea: document.getElementById("valuesImageUploadArea"),
+            saveBtn: document.getElementById("valuesSaveBtn"),
+            deleteBtn: document.getElementById("deleteValuesImageBtn"),
+          },
+
+          // -- YÖNETİCİLER BÖLÜMÜ: Form alanları, görsel upload & önizleme, liste alanı --
+          yoneticiler: {
+            name: document.getElementById("managerName"),
+            role: document.getElementById("managerRole"),
+            description: document.getElementById("managerDescription"),
+            imageInput: document.getElementById("managerImageInput"),
+            imagePreview: document.getElementById("managerImagePreview"),
+            imagePreviewContainer: document.getElementById("managerImagePreviewContainer"),
+            uploadArea: document.getElementById("managerImageUploadArea"),
+            saveBtn: document.getElementById("managerSaveBtn"),
+            deleteBtn: document.getElementById("deleteManagerImageBtn"),
+            // Not: Liste, yöneticilerin kartlar halinde basıldığı konteynerdir
+            listContainer: document.getElementById("managerList"),
+          },
+        };
+
+        // ----------------------------------------------------------------------------------
+        // fetchAndFillData:
+        // 'Hakkımızda' ve 'Yöneticiler' verilerini aynı anda çeker (Promise.all),
+        // sonrasında ilgili form alanlarını doldurur ve yöneticiler listesini render eder.
+        // ----------------------------------------------------------------------------------
+        async function fetchAndFillData() {
+          try {
+            const [hakkimizdaResponse, yoneticilerResponse] = await Promise.all([
+              fetch(hakkimizdaApiUrl),
+              fetch(yoneticilerApiUrl),
+            ]);
+
+            // API yanıtlarının başarılı olup olmadığını kontrol edin
+            if (!hakkimizdaResponse.ok) {
+              throw new Error(`Hakkımızda API HTTP Hatası: ${hakkimizdaResponse.status}`);
+            }
+            if (!yoneticilerResponse.ok) {
+              throw new Error(`Yöneticiler API HTTP Hatası: ${yoneticilerResponse.status}`);
+            }
+
+            const hakkimizdaData = await hakkimizdaResponse.json();
+            const yoneticilerData = await yoneticilerResponse.json();
+
+            // --- Hakkımızda bölümlerini doldur ---
+            if (hakkimizdaData.success && hakkimizdaData.data) {
+              for (const key in hakkimizdaData.data) {
+                // Sadece hakkimizda API'sinden gelen bölümleri işliyoruz
+                if (contentSections[key] && key !== "yoneticiler") {
+                  const section = contentSections[key];
+                  const data = hakkimizdaData.data[key];
+
+                  // Null veya undefined ise boş string atar
+                  if (section.title) section.title.value = data.title || "";
+                  if (section.description) section.description.value = data.description || "";
+
+                  // Görsel URL geldiyse önizlemeyi aç
+                  if (section.imagePreview && data.image_url) {
+                    setPreviewImage(section, data.image_url);
+                  }
+                }
+              }
+            } else {
+              console.error("Hakkımızda API hatası:", hakkimizdaData.message);
+            }
+
+            // --- Yöneticiler listesini doldur ---
+            // Yöneticiler API'sinden gelen verilerde success ve data.yoneticiler kontrolü yapıyoruz.
+            if (yoneticilerData.success && yoneticilerData.data && yoneticilerData.data.yoneticiler) {
+              renderAllYoneticiler(yoneticilerData.data.yoneticiler);
+            } else {
+              console.error("Yöneticiler API hatası:", yoneticilerData.message);
+            }
+          } catch (error) {
+            console.error("Veri çekme sırasında bir hata oluştu:", error);
+          }
+        }
+
+        // ----------------------------------------------------------------------------------
+        // renderAllYoneticiler:
+        // Sunucudan gelen yöneticiler dizisini alır, liste konteynerini temizler ve
+        // her bir yönetici için kart oluşturarak ekler.
+        // ----------------------------------------------------------------------------------
+        function renderAllYoneticiler(yoneticiler) {
+          const listContainer = contentSections.yoneticiler.listContainer;
+          if (!listContainer) return;
+          listContainer.innerHTML = "";
+          yoneticiler.forEach((yonetici) => {
+            renderYoneticiCard(yonetici);
+          });
+        }
+
+        // ----------------------------------------------------------------------------------
+        // renderYoneticiCard:
+        // Tek bir yönetici objesini Bootstrap kart yapısıyla DOM'a ekler.
+        // ----------------------------------------------------------------------------------
+        function renderYoneticiCard(yonetici) {
+          const listContainer = contentSections.yoneticiler.listContainer;
+          if (!listContainer) return;
+
+          const yoneticiDiv = document.createElement("div");
+          yoneticiDiv.className = "col-lg-4 col-md-6 col-sm-12 mb-4";
+          yoneticiDiv.innerHTML = `
+                <div class="card manager-card h-100">
+                  <img src="${yonetici.image_url ? yonetici.image_url : "path/to/default/image.jpg"}"
+                           class="card-img-top" alt="${yonetici.full_name}">
+                  <div class="card-body text-center">
+                    <h5 class="card-title">${yonetici.full_name}</h5>
+                    <p class="card-text text-muted">${yonetici.role}</p>
+                    <p class="card-text">${yonetici.description}</p>
+                    <button class="btn btn-danger btn-sm mt-2 delete-yonetici-btn delete-button-with-spacing" data-id="${
+                      yonetici.id
+                    }">
+                        <i class="fas fa-trash-alt"></i> Sil
+                    </button>
+                  </div>
+                </div>
+              `;
+          listContainer.appendChild(yoneticiDiv);
+        }
+
+        // ----------------------------------------------------------------------------------
+        // deleteYonetici:
+        // Kullanıcıdan onay alır, sonra seçili yöneticiyi DELETE isteğiyle siler.
+        // Başarılı olursa listeyi yeniler.
+        // ----------------------------------------------------------------------------------
+        async function deleteYonetici(id) {
+          if (!confirm("Bu yöneticiyi silmek istediğinizden emin misiniz?")) {
+            return;
+          }
+
+          try {
+            const response = await fetch(yoneticilerApiUrl, {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ id: id }), // ID'yi body içinde gönder
+            });
+
+            if (!response.ok) {
+              const errorText = await response.text();
+              throw new Error(`Silme işlemi HTTP hatası: ${response.status} - ${errorText}`);
+            }
+
+            const result = await response.json();
+
+            if (result.success) {
+              alert("Yönetici başarıyla silindi.");
+              // İsteği `fetchAndFillData` yerine, sadece DOM'dan kaldırarak daha performanslı hale getirebilirsiniz.
+              // Örneğin:
+              // document.querySelector(`[data-id='${id}']`).closest('.col-lg-4').remove();
+              fetchAndFillData();
+            } else {
+              alert("Silme işlemi başarısız: " + (result.message || "Bilinmeyen bir hata oluştu."));
+            }
+          } catch (error) {
+            console.error("Silme isteği sırasında hata oluştu:", error);
+            alert("Silme işlemi sırasında bir hata oluştu: " + error.message);
+          }
+        }
+
+        // ----------------------------------------------------------------------------------
+        // clearYoneticiForm:
+        // Yöneticiler formundaki tüm alanları sıfırlar ve önizlemeyi kapatır.
+        // ----------------------------------------------------------------------------------
+        function clearYoneticiForm() {
+          const yoneticilerSection = contentSections.yoneticiler;
+          if (yoneticilerSection) {
+            yoneticilerSection.name.value = "";
+            yoneticilerSection.role.value = "";
+            yoneticilerSection.description.value = "";
+            yoneticilerSection.imagePreview.src = "";
+            yoneticilerSection.imagePreviewContainer.style.display = "none";
+            yoneticilerSection.uploadArea.style.display = "flex";
+            yoneticilerSection.imageInput.value = "";
+          }
+        }
+
+        // -------------------------------------------------
+        // Sayfa yüklenir yüklenmez verileri ilk kez çekiyoruz
+        // -------------------------------------------------
+        fetchAndFillData();
+
+        // ----------------------------------------------------------------------------------
+        // .btn-save tıklama olayları:
+        // - Hangi bölümdeysek onu belirler.
+        // - FormData hazırlar.
+        // - 'yoneticiler' için farklı alanlar gönderir, diğerlerinde section_key/title/description.
+        // - Başarılı POST sonrası gerekli güncellemeleri yapar.
+        // ----------------------------------------------------------------------------------
+        document.querySelectorAll(".btn-save").forEach((button) => {
+          button.addEventListener("click", async function () {
+            const sectionId = this.closest(".content-item").id.replace("-bolumu", "");
+            const section = contentSections[sectionId];
+            if (!section) return;
+
+            const formData = new FormData();
+            let apiToUse = hakkimizdaApiUrl;
+
+            if (sectionId === "yoneticiler") {
+              // Yöneticiler kaydı için alanlar
+              apiToUse = yoneticilerApiUrl;
+              formData.append("name", section.name.value);
+              formData.append("role", section.role.value);
+              formData.append("description", section.description.value);
+              if (section.imageInput.files[0]) {
+                formData.append("image", section.imageInput.files[0]);
+              }
+            } else {
+              // Hakkımızda bölümleri için alanlar
+              formData.append("section_key", sectionId);
+              formData.append("title", section.title.value);
+              formData.append("description", section.description.value);
+              if (section.imageInput && section.imageInput.files[0]) {
+                formData.append("image", section.imageInput.files[0]);
+              }
+            }
+
+            try {
+              const response = await fetch(apiToUse, {
+                method: "POST",
+                body: formData,
+              });
+
+              if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`HTTP hatası! Durum: ${response.status} - ${errorText}`);
+              }
+
+              const result = await response.json();
+
+              if (result.success) {
+                alert("Veriler başarıyla kaydedildi!");
+                if (sectionId === "yoneticiler") {
+                  fetchAndFillData();
+                  clearYoneticiForm();
+                }
+              } else {
+                alert("Veri kaydedilirken bir hata oluştu: " + result.message);
+              }
+            } catch (error) {
+              console.error("POST isteği sırasında hata oluştu:", error);
+              alert("POST isteği sırasında bir hata oluştu: " + error.message);
+            }
+          });
+        });
+
+        // ----------------------------------------------------------------------------------
+        // setPreviewImage:
+        // Sunucudan gelen bir resim URL'sini önizlemede gösterir, upload alanını gizler.
+        // ----------------------------------------------------------------------------------
+        function setPreviewImage(section, imageUrl) {
+          section.imagePreview.src = imageUrl;
+          section.imagePreviewContainer.style.display = "block";
+          section.uploadArea.style.display = "none";
+        }
+
+        // ----------------------------------------------------------------------------------
+        // handleFile:
+        // Kullanıcının seçtiği/sürüklediği yerel resmi FileReader ile okuyup önizlemeyi açar.
+        // ----------------------------------------------------------------------------------
+        function handleFile(file, section) {
+          if (file && file.type.startsWith("image/")) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              section.imagePreview.src = e.target.result;
+              section.imagePreviewContainer.style.display = "block";
+              section.uploadArea.style.display = "none";
+            };
+            reader.readAsDataURL(file);
+          }
+        }
+
+        // ----------------------------------------------------------------------------------
+        // setupImageUpload:
+        // Bir bölüm için tıklama/drag&drop ile dosya seçimini, değişiklikte önizlemeyi ve
+        // (varsa) önizleme silme butonunu çalışır hale getirir.
+        // ----------------------------------------------------------------------------------
+        function setupImageUpload(section) {
+          if (!section.uploadArea || !section.imageInput || !section.imagePreviewContainer || !section.imagePreview)
+            return;
+
+          // Tıklayınca dosya seçtir
+          section.uploadArea.addEventListener("click", () => section.imageInput.click());
+
+          // Sürükle-bırak görsel geri bildirimi
+          section.uploadArea.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            section.uploadArea.classList.add("dragover");
+          });
+          section.uploadArea.addEventListener("dragleave", () => section.uploadArea.classList.remove("dragover"));
+
+          // Dosya bırakılınca oku ve önizle
+          section.uploadArea.addEventListener("drop", (e) => {
+            e.preventDefault();
+            section.uploadArea.classList.remove("dragover");
+            handleFile(e.dataTransfer.files[0], section);
+          });
+
+          // Dosya input değiştiğinde önizle
+          section.imageInput.addEventListener("change", (e) => handleFile(e.target.files[0], section));
+
+          // Önizlemeyi temizleme (varsa)
+          if (section.deleteBtn) {
+            section.deleteBtn.addEventListener("click", () => {
+              section.imagePreview.src = "";
+              section.imagePreviewContainer.style.display = "none";
+              section.uploadArea.style.display = "flex";
+              section.imageInput.value = "";
+            });
+          }
+        }
+
+        // -------------------------------------------------------------------
+        // Tüm bölümler için görsel yükleme kurulumlarını tek tek başlatıyoruz
+        // -------------------------------------------------------------------
+        setupImageUpload(contentSections.tarihce);
+        setupImageUpload(contentSections.misyon);
+        setupImageUpload(contentSections.degerler);
+        setupImageUpload(contentSections.yoneticiler);
+
+        // ----------------------------------------------------------------------------------
+        // Yöneticiler listesinde "Sil" butonları için olay yetkilendirme:
+        // Kart içindeki .delete-yonetici-btn tıklanınca ilgili ID ile siler.
+        // ----------------------------------------------------------------------------------
+        const managerListContainer = contentSections.yoneticiler.listContainer;
+        if (managerListContainer) {
+          managerListContainer.addEventListener("click", function (event) {
+            const deleteButton = event.target.closest(".delete-yonetici-btn");
+            if (deleteButton) {
+              const yoneticiId = deleteButton.dataset.id;
+              deleteYonetici(yoneticiId);
+            }
+          });
+        }
+
+        // ------------------------------------------------------------------------------
+        // Sidebar (mobil menü) aç/kapat akışı: hamburger ile aç, X/overlay ile kapat
+        // ------------------------------------------------------------------------------
+        const sidebar = document.querySelector(".sidebar");
+        const hamburgerBtn = document.querySelector(".hamburger-menu");
+        const sidebarCloseBtn = document.querySelector(".sidebar-close-btn");
+        const overlay = document.querySelector(".overlay");
+
+        function openSidebar() {
+          sidebar.classList.add("active");
+          overlay.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeSidebar() {
+          sidebar.classList.remove("active");
+          overlay.classList.remove("active");
+          document.body.style.overflow = "auto";
+        }
+
+        if (hamburgerBtn) {
+          hamburgerBtn.addEventListener("click", openSidebar);
+        }
+        if (sidebarCloseBtn) {
+          sidebarCloseBtn.addEventListener("click", closeSidebar);
+        }
+        if (overlay) {
+          overlay.addEventListener("click", closeSidebar);
+        }
+
+        // Mobilde bir menü linkine tıklanınca sidebar'ı kapat
+        sidebar.querySelectorAll(".main-nav li a").forEach((link) => {
+          link.addEventListener("click", () => {
+            if (window.innerWidth <= 768) {
+              closeSidebar();
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

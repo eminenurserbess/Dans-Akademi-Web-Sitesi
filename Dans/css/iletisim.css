@@ -1,0 +1,781 @@
+/* Genel Ayarlar ve Font Tanımları */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+
+:root {
+  --primary-color: #dd5928;
+  --primary-color-light: #f07047;
+  --text-light: #eae0c8;
+  --text-dark: #333;
+  --overlay-color: rgba(0, 0, 0, 0.5); /* Video üzerine gelen koyu katman */
+  --header-bg: rgba(0, 0, 0, 0.7); /* Header arka planı */
+  --header-background-solid: #817469; /* Görseldeki gibi gri-kahve arka plan */
+  --sub-title-text: #fff9ea;
+  --footer-background: #504841;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: var(--text-dark);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/** NAVBAR Header */
+.header {
+  position: relative;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  color: var(--text-light);
+  padding: 15px 20px;
+  z-index: 1000;
+  background-color: var(--header-background-solid);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  padding-left: 30px;
+  height: 100px;
+  width: auto;
+  max-width: 100%;
+}
+
+/* Masaüstü Navigasyon */
+.navbar {
+  display: flex;
+  align-items: center;
+  padding-right: 100px;
+}
+
+.navbar ul {
+  display: flex;
+  align-items: center;
+}
+
+.navbar ul li {
+  margin-left: 30px;
+}
+
+.navbar ul li a {
+  color: var(--text-light);
+  font-weight: 400;
+  font-size: 16px;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 5px;
+  overflow: hidden;
+}
+
+.navbar ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--text-light);
+  transition: width 0.3s ease-out;
+}
+
+.navbar ul li a:hover::after,
+.navbar ul li a.active::after {
+  width: 100%;
+}
+
+/* Öğrenci Giriş Butonu Stili */
+.navbar ul li .student-login-btn {
+  background-color: var(--primary-color);
+  color: var(--text-dark);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: 600; /* Daha belirgin yazı */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap; /* Metnin tek satırda kalmasını sağlar */
+  border: 1px solid var(--primary-color); /* Kenarlık ekle */
+}
+
+.navbar ul li .student-login-btn:hover {
+  background-color: var(--text-light); /* Hover'da arka plan rengi */
+  color: var(--primary-color); /* Hover'da yazı rengi */
+  border-color: var(--text-light); /* Hover'da kenarlık rengi */
+}
+
+/* Mevcut ::after stilini buton için devre dışı bırak */
+.navbar ul li .student-login-btn::after {
+  display: none;
+}
+
+.lang-switcher span {
+  margin: 0 5px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/** DUYURULAR BAŞLIĞI SUBTİTLE */
+.announcements-page-banner {
+  background-color: var(--header-background-solid);
+  color: var(--text-light);
+  text-align: center;
+  padding: 40px 0; /* İç boşluklar, yüksekliği ayarlar */
+  width: 100%; /* Genişlik tam olsun */
+  padding-top: 5px;
+}
+
+.announcements-page-banner h1 {
+  font-size: 50px; /* Görseldeki büyüklüğe yakın */
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px; /* Harfler arası boşluk */
+  color: var(--sub-title-text);
+}
+
+/** Mobil Navigasyon Açma/Kapama İkonu (Hamburger Menü) */
+.mobile-nav-toggle {
+  display: none;
+  font-size: 28px;
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+/* Mobil Menü (Varsayılan olarak gizli) */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--text-dark);
+  color: var(--text-light);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(100%);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.mobile-menu.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.mobile-logo img {
+  padding-left: 70px;
+  height: 100px;
+  width: auto;
+  max-width: 100%;
+}
+
+.mobile-menu-close {
+  font-size: 30px;
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-menu ul li {
+  padding: 5px 0;
+  text-align: left;
+}
+
+.mobile-menu ul li a {
+  display: block;
+  font-size: 16px;
+  color: var(--text-light);
+  transition: color 0.3s ease;
+}
+
+.mobile-menu ul li a:hover {
+  color: black;
+}
+
+.mobile-menu hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 10px 0;
+}
+
+/* Mobil Menüdeki Öğrenci Giriş Butonunun İyileştirilmiş Stili */
+.mobile-menu .mobil-student-login-btn {
+  background-color: var(--primary-color-light);
+  color: var(--text-light);
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  display: block;
+  width: fit-content; /* İçeriğine göre genişlik ayarlar, gereksiz boşlukları engeller */
+  margin: 5px auto; /* Üstte ve altta boşluk bırak, yatayda ortala */
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-menu .mobil-student-login-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/** --- iletişim --- */
+/* --- İLETİŞİM BÖLÜMÜ (MAIN) STİLLERİ --- */
+.contact-section {
+  padding: 80px 0; /* Üst ve alt boşluklar */
+  background-color: #f9f9f9; /* Hafif gri arka plan */
+  text-align: center;
+}
+
+.contact-section .container {
+  max-width: 1100px; /* İçeriğin genişliğini sınırlar */
+}
+
+.contact-section .section-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--primary-color); /* Başlık rengi */
+  margin-bottom: 60px; /* Başlık alt boşluğu */
+  position: relative;
+  display: inline-block; /* Çizginin başlığa göre hizalanması için */
+}
+
+.contact-section .section-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -15px; /* Başlıktan biraz aşağıda */
+  transform: translateX(-50%); /* Ortalamak için */
+  width: 80px; /* Çizgi genişliği */
+  height: 4px;
+  background-color: var(--text-dark); /* Çizgi rengi */
+  border-radius: 2px;
+}
+
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Duyarlı ızgara */
+  gap: 30px; /* Öğeler arası boşluk */
+  margin-bottom: 60px;
+}
+
+.contact-item {
+  background-color: #ffffff; /* Beyaz kart arka planı */
+  padding: 40px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Hafif gölge */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 220px; /* Kartların minimum yüksekliği */
+}
+
+.contact-item:hover {
+  transform: translateY(-8px); /* Hover'da hafif yukarı kaydırma */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Gölgeyi artırma */
+}
+
+.contact-item i {
+  font-size: 48px;
+  color: var(--primary-color); /* İkon rengi */
+  margin-bottom: 25px;
+}
+
+.contact-item h3 {
+  font-size: 26px;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.contact-item p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.5;
+  word-wrap: break-word; /* Uzun kelimelerin kırılmasını sağlar */
+  max-width: 100%; /* İçeriğin kart genişliğini aşmamasını sağlar */
+}
+
+/* Linkler için özel stiller */
+.contact-item .map-link,
+.contact-item .email-link,
+.contact-item .phone-link {
+  display: inline-block; /* Buton gibi davranması için */
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  white-space: nowrap; /* Metnin tek satırda kalmasını sağlar */
+}
+
+.contact-item .map-link:hover,
+.contact-item .email-link:hover,
+.contact-item .phone-link:hover {
+  background-color: var(--primary-color-light); /* Hover'da daha açık renk */
+  transform: translateY(-2px); /* Hafif yukarı kaydırma efekti */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Sosyal Medya Bölümü --- */
+.social-media {
+  background-color: var(--header-background-solid); /* Koyu arka plan */
+  padding: 40px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  margin-top: 40px; /* Üstteki ızgaradan boşluk */
+}
+
+.social-media h3 {
+  font-size: 32px;
+  color: var(--text-light); /* Başlık rengi */
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 25px; /* İkonlar arası boşluk */
+}
+
+.social-icons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Yuvarlak ikonlar */
+  background-color: #fff; /* İkon arka planı beyaz */
+  color: var(--primary-color); /* İkon rengi */
+  font-size: 32px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.social-icons a:hover {
+  transform: scale(1.15) rotate(5deg); /* Hafif büyütme ve döndürme */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Sosyal medya ikonlarının hover renkleri */
+.social-icons a .fa-facebook-f:hover {
+  color: #3b5998; /* Facebook Mavisi */
+}
+
+.social-icons a .fa-instagram:hover {
+  color: #c13584; /* Instagram Mor-Pembe */
+}
+
+.social-icons a .fa-youtube:hover {
+  color: #ff0000; /* YouTube Kırmızısı */
+}
+
+/** --- Footer Stilleri --- */
+.footer {
+  background-color: var(--footer-background); /* Koyu arka plan */
+  color: #bbb; /* Açık gri metin rengi */
+  padding: 60px 0 20px 0; /* Üst, sağ, alt, sol padding */
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.footer .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 40px; /* Sütunlar arası boşluk */
+  margin-bottom: 40px;
+}
+
+.footer-col {
+  padding: 0 10px; /* Sütun iç boşluğu */
+}
+
+.footer-logo img {
+  max-width: 230px; /* Logo boyutunu ayarla */
+  height: auto;
+  margin-bottom: 20px;
+  padding-left: 50px;
+}
+
+.footer-col p {
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+.footer-col h4 {
+  font-size: 20px;
+  color: #fff; /* Başlık rengi */
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-col h4::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px; /* Alt çizgi uzunluğu */
+  height: 3px;
+  background-color: var(--primary-color); /* Ana renk turuncu */
+  border-radius: 2px;
+}
+
+.footer-col.quick-links ul {
+  margin-top: 35px; /* Başlığın kapladığı yere göre ayarlayın. Bu değeri deneyerek değiştirebilirsiniz. */
+  /* Eğer gerekirse, mobil görünümde de ayarlama yapın */
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start; /* İçerikleri üstten hizala */
+}
+
+.footer-col ul li i {
+  margin-right: 10px;
+  color: var(--primary-color); /* İkon rengi */
+  font-size: 18px;
+  line-height: 1.8; /* Metinle aynı hizaya getirmek için */
+}
+
+.footer-col ul li a {
+  color: #bbb;
+  transition: color 0.3s ease;
+  white-space: nowrap; /* Bağlantıların tek satırda kalmasını sağlar */
+  overflow: hidden; /* Taşmaları gizle */
+  text-overflow: ellipsis; /* Taşma durumunda üç nokta göster */
+}
+
+.footer-col ul li a:hover {
+  color: var(--primary-color); /* Hover'da turuncu renk */
+}
+
+/* Footer Sosyal Medya İkonları */
+.footer-social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.footer-social-icons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--text-light); /* Başlangıçta beyaz dış çerçeve */
+  color: var(--text-light); /* BAŞLANGIÇTA İKON RENGİ BEYAZ */
+  font-size: 20px;
+  transition: all 0.3s ease; /* Tüm geçişlere yumuşaklık kat */
+  text-shadow: none;
+  background-color: transparent;
+}
+
+.footer-social-icons a:hover {
+  background-color: var(--text-light);
+  border-color: var(--text-light);
+  transform: scale(1.1);
+}
+.footer-social-icons a:hover .fa-facebook-f {
+  color: #3b5998; /* Facebook Mavi */
+}
+
+.footer-social-icons a:hover .fa-youtube {
+  color: #ff0000; /* YouTube Kırmızı */
+}
+
+.footer-social-icons a:hover .fa-instagram {
+  color: #c13584; /* Instagram Mor-Pembe tonu */
+}
+
+/* Footer Alt Kısım (Telif Hakkı) */
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Üstte ince çizgi */
+  color: #888;
+  font-size: 14px;
+}
+
+/* --- Responsive Düzenlemeler --- */
+@media (max-width: 768px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  /* Header ve Navigasyon */
+  .header .container {
+    padding: 10px 15px;
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    font-size: 24px;
+  }
+
+  .logo img,
+  .mobile-menu-header .mobile-logo img {
+    padding-left: 0;
+    height: 80px;
+  }
+
+  /* Sayfa Başlığı (Banner) */
+  .announcements-page-banner {
+    padding: 30px 0 0 0;
+  }
+
+  .announcements-page-banner h1 {
+    font-size: 38px;
+    letter-spacing: 2px;
+  }
+
+  .contact-section {
+    padding: 60px 0;
+  }
+
+  .contact-section .section-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  .contact-info-grid {
+    grid-template-columns: 1fr; /* Tek sütun düzenine geçer */
+    gap: 25px;
+  }
+
+  .contact-item {
+    padding: 25px 15px;
+    min-height: auto; /* Yüksekliği otomatik ayarlar */
+  }
+
+  .contact-item i {
+    font-size: 38px;
+  }
+
+  .contact-item h3 {
+    font-size: 20px;
+  }
+
+  .contact-item p {
+    font-size: 15px;
+  }
+
+  .contact-item .map-link,
+  .contact-item .email-link,
+  .contact-item .phone-link {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+
+  .social-media {
+    padding: 30px 15px;
+    margin-top: 30px;
+  }
+
+  .social-media h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .social-icons {
+    gap: 15px;
+  }
+
+  .social-icons a {
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 40px 0 20px 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    text-align: center;
+  }
+
+  .footer-col {
+    padding: 0 20px;
+  }
+
+  .footer-logo img {
+    max-width: 180px;
+    margin: 0 auto 15px auto;
+    padding-left: 0;
+  }
+
+  .footer-col p {
+    font-size: 14px;
+  }
+
+  .footer-col h4 {
+    margin-bottom: 15px;
+    font-size: 18px;
+  }
+
+  .footer-col h4::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .footer-col.quick-links ul {
+    margin-top: 20px;
+  }
+
+  .footer-col ul li {
+    justify-content: center;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .footer-col ul li i {
+    font-size: 16px;
+  }
+
+  .footer-social-icons {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .footer-social-icons a {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+
+  .footer-bottom {
+    padding-top: 15px;
+    font-size: 12px;
+  }
+}
+
+/* --- Küçük Telefonlar için Ekstra Düzenleme --- */
+@media (max-width: 480px) {
+  .header .container {
+    padding: 8px 10px;
+  }
+
+  .logo img,
+  .mobile-menu-header .mobile-logo img {
+    height: 70px;
+  }
+
+  .announcements-page-banner h1 {
+    font-size: 32px;
+    letter-spacing: 1px;
+  }
+
+  .contact-section .section-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .contact-item i {
+    font-size: 32px;
+  }
+
+  .contact-item h3 {
+    font-size: 18px;
+  }
+
+  .contact-item p {
+    font-size: 14px;
+  }
+
+  .footer-col h4 {
+    font-size: 16px;
+  }
+
+  .footer-col ul li {
+    font-size: 13px;
+  }
+}

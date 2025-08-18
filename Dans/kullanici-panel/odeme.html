@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kullanıcı Paneli | Vali Osman Dance Academy</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+
+      :root {
+        --primary-color: #dd5928;
+        --primary-color-light: #f07047;
+        --text-light: #eae0c8;
+        --text-dark: #333;
+        --overlay-color: rgba(0, 0, 0, 0.5);
+        --header-bg: rgba(0, 0, 0, 0.7);
+        --header-background-solid: #817469;
+        --sub-title-text: #fff9ea;
+        --footer-background: #504841;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: #f9f5f0;
+        color: var(--text-dark);
+        line-height: 1.6;
+      }
+
+      .student-container {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        min-height: 100vh;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        background-color: var(--header-background-solid);
+        color: var(--text-light);
+        padding: 2rem 1rem;
+        position: relative;
+      }
+
+      .profile-section {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(234, 224, 200, 0.2);
+      }
+
+      .profile-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      .profile-name {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .profile-email {
+        font-size: 0.8rem;
+        opacity: 0.8;
+      }
+
+      .nav-menu {
+        list-style: none;
+      }
+
+      .nav-item {
+        margin-bottom: 0.5rem;
+      }
+
+      .nav-link {
+        display: block;
+        color: var(--text-light);
+        text-decoration: none;
+        padding: 0.8rem 1rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .nav-link i {
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+      }
+
+      /* Main Content */
+      .main-content {
+        padding: 2rem;
+      }
+
+      .header {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .logout-btn {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.5rem 1.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .logout-btn:hover {
+        background-color: var(--primary-color-light);
+      }
+
+      /** ---- Ödemeler Sayfası Stilleri ----*/
+      .content-section {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        margin-top: 30px;
+      }
+
+      .content-section h2 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--primary-color-light);
+      }
+
+      .data-table-container {
+        overflow-x: auto;
+      }
+
+      .data-table {
+        width: 100%;
+        min-width: 500px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        border-collapse: collapse;
+      }
+
+      .data-table thead {
+        background-color: var(--primary-color);
+        color: #fff;
+      }
+
+      .data-table th,
+      .data-table td {
+        padding: 15px;
+        text-align: left;
+        white-space: nowrap;
+      }
+
+      .data-table tbody tr {
+        border-bottom: 1px solid #ddd;
+        transition: background-color 0.3s ease;
+      }
+
+      .data-table tbody tr:hover {
+        background-color: #f5f5f5;
+      }
+
+      /* Durum etiketleri için stil */
+      .status-label {
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: 600;
+        color: #fff;
+        font-size: 0.9em;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .status-label.odendi {
+        background-color: #28a745;
+      }
+
+      .status-label.odenmedi {
+        background-color: #dc3545;
+      }
+
+      td:first-child {
+        font-weight: 600;
+      }
+
+      /* Mobil kart stili */
+      .odeme-listesi-kart {
+        display: none;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .odeme-karti {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e0e0e0;
+      }
+
+      .odeme-bilgi {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 5px;
+      }
+
+      .odeme-bilgi:last-child {
+        margin-bottom: 0;
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .odeme-bilgi span:first-child {
+        font-weight: 600;
+      }
+
+      .odeme-bilgi span:last-child {
+        text-align: right;
+      }
+
+      /* Mobil Menü Butonu */
+      .menu-toggle {
+        display: none;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        cursor: pointer;
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* --- Mobil Uyumlu Tasarım --- */
+      @media (max-width: 768px) {
+        .student-container {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          position: fixed;
+          top: 0;
+          left: -250px;
+          width: 250px;
+          height: 100%;
+          z-index: 999;
+          transition: left 0.3s ease;
+          box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar.active {
+          left: 0;
+        }
+
+        .menu-toggle {
+          display: flex;
+        }
+
+        .main-content {
+          padding: 1rem;
+          margin-top: 60px;
+        }
+
+        .header {
+          justify-content: flex-end;
+          margin-bottom: 1rem;
+        }
+
+        .content-section {
+          padding: 20px;
+          margin-top: 10px;
+        }
+
+        /* Mobil görünümde tabloyu gizle, kartları göster */
+        .data-table-container {
+          display: none;
+        }
+
+        .odeme-listesi-kart {
+          display: grid;
+        }
+        .status-label {
+          color: #fff;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="menu-toggle" id="menu-toggle-btn">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="student-container">
+      <aside class="sidebar" id="sidebar">
+        <div class="profile-section">
+          <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Profil Resmi" class="profile-img" />
+          <h3 class="profile-name">Aylin Demir</h3>
+        </div>
+
+        <nav>
+          <ul class="nav-menu">
+            <li class="nav-item">
+              <a href="kullanici.html" class="nav-link">
+                <i class="fas fa-home"></i>
+                Ana Sayfa
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="kurslarim.html" class="nav-link">
+                <i class="fas fa-book"></i>
+                Kurs Takvimi
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="gecmiş-kurslarim.html" class="nav-link">
+                <i class="fas fa-book"></i>
+                Geçmiş Kurslarım
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="odeme.html" class="nav-link active">
+                <i class="fas fa-file-invoice-dollar"></i>
+                Ödemeler
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      <main class="main-content">
+        <div class="header">
+          <button class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Çıkış Yap
+          </button>
+        </div>
+
+        <div class="content-section">
+          <h2>Ödeme Durumu</h2>
+
+          <div class="data-table-container">
+            <table class="data-table odeme-table">
+              <thead>
+                <tr>
+                  <th>Kurs Adı</th>
+                  <th>Eğitmen</th>
+                  <th>Başlangıç Tarihi</th>
+                  <th>Ödeme Durumu</th>
+                </tr>
+              </thead>
+              <tbody id="odeme-listesi-tablo"></tbody>
+            </table>
+          </div>
+
+          <div class="odeme-listesi-kart" id="odeme-listesi-kart"></div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const odemeler = [
+          { kursAd: "Latin Dansları Temel Seviye", egitmen: "Cem Yılmaz", baslangic: "2025-08-20", durum: "odendi" },
+          { kursAd: "Modern Dans Orta Seviye", egitmen: "Ayşe Kaya", baslangic: "2025-08-15", durum: "odenmedi" },
+          { kursAd: "Tango İleri Seviye", egitmen: "Murat Güven", baslangic: "2025-08-25", durum: "odendi" },
+        ];
+
+        const odemeListesiTablo = document.getElementById("odeme-listesi-tablo");
+        const odemeListesiKart = document.getElementById("odeme-listesi-kart");
+        const menuToggleBtn = document.getElementById("menu-toggle-btn");
+        const sidebar = document.getElementById("sidebar");
+
+        function guncelle(odemeVerileri) {
+          odemeListesiTablo.innerHTML = "";
+          odemeListesiKart.innerHTML = "";
+
+          odemeVerileri.forEach((odeme) => {
+            const durumClass = odeme.durum === "odendi" ? "odendi" : "odenmedi";
+            const durumMetni = odeme.durum === "odendi" ? "Ödendi" : "Ödenmedi";
+
+            const baslangicTarihi = new Date(odeme.baslangic);
+            const tarihFormat = baslangicTarihi.toLocaleDateString("tr-TR", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            });
+
+            // Tablo için satır oluştur
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${odeme.kursAd}</td>
+                <td>${odeme.egitmen}</td>
+                <td>${tarihFormat}</td>
+                <td><span class="status-label ${durumClass}">${durumMetni}</span></td>
+              `;
+            odemeListesiTablo.appendChild(tr);
+
+            // Kart için div oluştur
+            const kart = document.createElement("div");
+            kart.classList.add("odeme-karti");
+            kart.innerHTML = `
+                <div class="odeme-bilgi">
+                  <span>Kurs Adı</span>
+                  <span>${odeme.kursAd}</span>
+                </div>
+                <div class="odeme-bilgi">
+                  <span>Eğitmen</span>
+                  <span>${odeme.egitmen}</span>
+                </div>
+                <div class="odeme-bilgi">
+                  <span>Başlangıç Tarihi</span>
+                  <span>${tarihFormat}</span>
+                </div>
+                <div class="odeme-bilgi">
+                  <span>Ödeme Durumu</span>
+                  <span><span class="status-label ${durumClass}">${durumMetni}</span></span>
+                </div>
+              `;
+            odemeListesiKart.appendChild(kart);
+          });
+        }
+
+        guncelle(odemeler);
+
+        menuToggleBtn.addEventListener("click", () => {
+          sidebar.classList.toggle("active");
+        });
+
+        // Menünün dışına tıklayınca kapanma işlevi
+        document.addEventListener("click", (event) => {
+          // Menü açık değilse veya tıklanan yer menünün içindeyse hiçbir şey yapma
+          if (
+            !sidebar.classList.contains("active") ||
+            sidebar.contains(event.target) ||
+            menuToggleBtn.contains(event.target)
+          ) {
+            return;
+          }
+
+          // Menünün dışına tıklandığında menüyü kapat
+          sidebar.classList.remove("active");
+        });
+      });
+    </script>
+  </body>
+</html>

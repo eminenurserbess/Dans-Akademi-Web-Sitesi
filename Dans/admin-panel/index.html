@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yönetim Paneli | Vali Osman Dance Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="mobile-header">
+      <button class="hamburger-menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="logo">
+        <h5>Vali Osman Dance Academy Yönetim Paneli</h5>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <button class="sidebar-close-btn"><i class="fas fa-times"></i></button>
+      <div class="logo desktop-logo">
+        <h4>Vali Osman Dance Academy Yönetim Paneli</h4>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li class="active">
+            <a href="index.html">
+              <span>Anasayfa</span>
+            </a>
+          </li>
+          <li>
+            <a href="hakkımızda.html">
+              <span>Hakkımızda</span>
+            </a>
+          </li>
+          <li>
+            <a href="kurslar.html">
+              <span>Kurslar</span>
+            </a>
+          </li>
+          <li>
+            <a href="etkinlikler.html">
+              <span>Etkinlikler</span>
+            </a>
+          </li>
+          <li>
+            <a href="duyurular.html">
+              <span>Duyurular</span>
+            </a>
+          </li>
+          <li>
+            <a href="galeri.html">
+              <span>Galeri</span>
+            </a>
+          </li>
+          <li>
+            <a href="iletisim.html">
+              <span>İletişim</span>
+            </a>
+          </li>
+          <li>
+            <a href="kullanici-bilgileri.html">
+              <span>Kullanıcı Bilgileri</span>
+            </a>
+          </li>
+          <li>
+            <a href="raporlama.html">
+              <span>Raporlama</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="#">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Çıkış Yap</span>
+        </a>
+      </div>
+    </aside>
+
+    <main>
+      <div class="content-panel">
+        <div class="content-wrapper">
+          <div class="simplified-content-management">
+            <!-- Logo Yönetimi -->
+            <div class="content-item">
+              <div class="content-header">
+                <h3>Üst Logo Yönetimi</h3>
+                <div class="media-actions">
+                  <button class="btn btn-success btn-save">
+                    <i class="fas fa-save"></i>
+                    Kaydet
+                  </button>
+                  <button class="btn btn-danger btn-delete">
+                    <i class="fas fa-trash"></i>
+                    Sil
+                  </button>
+                </div>
+              </div>
+              <div class="content-body">
+                <div class="upload-section">
+                  <div class="upload-area-content">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Logo yüklemek için butona tıklayın</p>
+                    <input type="file" id="logo-upload-input" accept="image/*" class="form-control" />
+                  </div>
+                  <div class="logo-display-container">
+                    <div class="media-preview" id="logo-preview">
+                      <img src="" alt="Mevcut Logo" class="current-media-img" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tanıtım Videosu -->
+            <div class="content-item">
+              <div class="content-header">
+                <h3>Tanıtım Videosu</h3>
+                <div class="media-actions">
+                  <button class="btn btn-success btn-save">
+                    <i class="fas fa-save"></i>
+                    Kaydet
+                  </button>
+                  <button class="btn btn-danger btn-delete">
+                    <i class="fas fa-trash"></i>
+                    Sil
+                  </button>
+                </div>
+              </div>
+              <div class="content-body">
+                <div class="upload-section">
+                  <div class="upload-area-content">
+                    <i class="fas fa-film"></i>
+                    <p>Video yüklemek için butona tıklayın</p>
+                    <input type="file" id="video-upload" accept="video/*" class="form-control" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sosyal Medya Linkleri -->
+            <div class="content-item">
+              <div class="content-header">
+                <h3>Sosyal Medya Linkleri</h3>
+                <div class="media-actions">
+                  <button class="btn btn-success btn-save">
+                    <i class="fas fa-save"></i>
+                    Kaydet
+                  </button>
+                </div>
+              </div>
+              <div class="content-body">
+                <div id="social-media-container">
+                  <div class="social-input-group">
+                    <div class="social-icon">
+                      <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Facebook URL"
+                      value="https://facebook.com/neruacademy"
+                    />
+                    <button class="btn btn-danger btn-icon btn-remove-social">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                  <div class="social-input-group">
+                    <div class="social-icon">
+                      <i class="fab fa-instagram"></i>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Instagram URL"
+                      value="https://instagram.com/neruacademy"
+                    />
+                    <button class="btn btn-danger btn-icon btn-remove-social">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                  <div class="social-input-group">
+                    <div class="social-icon">
+                      <i class="fab fa-youtube"></i>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="YouTube URL"
+                      value="https://youtube.com/neruacademy"
+                    />
+                    <button class="btn btn-danger btn-icon btn-remove-social">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- YouTube Videoları -->
+            <div class="content-item">
+              <div class="content-header">
+                <h3>YouTube Videoları</h3>
+                <div class="media-actions">
+                  <button class="btn btn-success btn-save">
+                    <i class="fas fa-save"></i>
+                    Kaydet
+                  </button>
+                  <button class="btn btn-danger btn-delete">
+                    <i class="fas fa-trash"></i>
+                    Tümünü Sil
+                  </button>
+                </div>
+              </div>
+              <div class="content-body" id="youtube-video-container">
+                <div class="video-item">
+                  <input
+                    type="text"
+                    class="form-control video-title"
+                    placeholder="Video Başlığı"
+                    value="Yeni Yıl Gösterisi"
+                  />
+                  <input
+                    type="text"
+                    class="form-control video-link"
+                    placeholder="YouTube Video Linki"
+                    value="https://www.youtube.com/watch?v=xxxxxxxx"
+                  />
+                  <button class="btn btn-danger btn-icon btn-remove-social">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+                <button class="btn btn-primary btn-add-video">
+                  <i class="fas fa-plus"></i>
+                  Yeni Video Ekle
+                </button>
+              </div>
+            </div>
+
+            <!-- Ana Sayfa Metni -->
+            <div class="content-item">
+              <div class="content-header">
+                <h3>Ana Sayfa Başlık</h3>
+                <div class="media-actions">
+                  <button class="btn btn-success btn-save">
+                    <i class="fas fa-save"></i>
+                    Kaydet
+                  </button>
+                </div>
+              </div>
+              <div class="content-body">
+                <div class="form-group">
+                  <!-- <label class="form-label">Ana Sayfa Başlık</label> -->
+                  <textarea class="form-control" rows="6">Ritmul tau incepe aici...</textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kayan Görseller -->
+            <div class="content-item">
+              <div class="content-header">
+                <h3>Kayan Görseller</h3>
+                <div class="media-actions">
+                  <button class="btn btn-success btn-save">
+                    <i class="fas fa-save"></i>
+                    Kaydet
+                  </button>
+                  <button class="btn btn-danger btn-delete">
+                    <i class="fas fa-trash"></i>
+                    Tümünü Sil
+                  </button>
+                </div>
+              </div>
+              <div class="content-body">
+                <div class="slider-container">
+                  <div class="upload-section" style="margin-top: 20px">
+                    <div class="upload-area-content">
+                      <i class="fas fa-images"></i>
+                      <p>Görsel yüklemek için butona tıklayın</p>
+                      <input type="file" id="slider-image-upload" accept="image/*" multiple class="form-control" />
+                    </div>
+                  </div>
+                  <div class="grid grid-3" id="slider-images-grid"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer Yönetimi -->
+            <div class="content-item">
+              <div class="content-header">
+                <h3>Footer Yönetimi</h3>
+                <div class="media-actions">
+                  <button class="btn btn-success btn-save">
+                    <i class="fas fa-save"></i>
+                    Kaydet
+                  </button>
+                </div>
+              </div>
+              <div class="content-body">
+                <div class="grid grid-2">
+                  <div class="upload-section">
+                    <label class="form-label">Logo</label>
+                    <div class="upload-area-content">
+                      <i class="fas fa-cloud-upload-alt"></i>
+                      <p>Logo yüklemek için butona tıklayın</p>
+                      <input type="file" id="footer-logo-upload-input" accept="image/*" class="form-control" />
+                    </div>
+                    <div class="media-preview" id="footer-logo-preview">
+                      <img src="" alt="Footer Logo" class="current-media-img" />
+                    </div>
+                  </div>
+                  <div>
+                    <div class="form-group">
+                      <label class="form-label">Footer Açıklaması</label>
+                      <textarea class="form-control" rows="4">
+Vali Osman Dance Academy - 2013'ten beri dans tutkunlarına kaliteli eğitim veriyoruz.</textarea
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const sidebar = document.querySelector(".sidebar");
+      const hamburgerBtn = document.querySelector(".hamburger-menu");
+      const sidebarCloseBtn = document.querySelector(".sidebar-close-btn");
+      const overlay = document.querySelector(".overlay");
+
+      function openSidebar() {
+        sidebar.classList.add("active");
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeSidebar() {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      if (hamburgerBtn) {
+        hamburgerBtn.addEventListener("click", openSidebar);
+      }
+
+      if (sidebarCloseBtn) {
+        sidebarCloseBtn.addEventListener("click", closeSidebar);
+      }
+
+      if (overlay) {
+        overlay.addEventListener("click", closeSidebar);
+      }
+
+      sidebar.querySelectorAll(".main-nav li a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 768) {
+            closeSidebar();
+          }
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        function handleImageUpload(uploadAreaId, inputId, previewId) {
+          const uploadArea = document.getElementById(uploadAreaId);
+          const input = document.getElementById(inputId);
+          const preview = document.getElementById(previewId);
+
+          uploadArea.addEventListener("click", () => {
+            input.click();
+          });
+
+          input.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (file) {
+              const reader = new FileReader();
+              reader.onload = (event) => {
+                preview.querySelector("img").src = event.target.result;
+                preview.style.display = "block";
+              };
+              reader.readAsDataURL(file);
+            }
+          });
+
+          ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+            uploadArea.addEventListener(eventName, preventDefaults, false);
+          });
+          ["dragenter", "dragover"].forEach((eventName) => {
+            uploadArea.addEventListener(eventName, () => uploadArea.classList.add("highlight"), false);
+          });
+          ["dragleave", "drop"].forEach((eventName) => {
+            uploadArea.addEventListener(eventName, () => uploadArea.classList.remove("highlight"), false);
+          });
+          uploadArea.addEventListener(
+            "drop",
+            (e) => {
+              const dt = e.dataTransfer;
+              const file = dt.files[0];
+              if (file) {
+                input.files = dt.files;
+                input.dispatchEvent(new Event("change"));
+              }
+            },
+            false
+          );
+        }
+
+        function preventDefaults(e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+
+        handleImageUpload("logo-upload-area", "logo-upload-input", "logo-preview");
+        document
+          .querySelector(".simplified-content-management .content-item:nth-of-type(1) .btn-save")
+          .addEventListener("click", () => {
+            console.log("Üst Logo kaydedildi.");
+            alert("Üst Logo kaydedildi.");
+          });
+        document
+          .querySelector(".simplified-content-management .content-item:nth-of-type(1) .btn-delete")
+          .addEventListener("click", () => {
+            const img = document.getElementById("logo-preview").querySelector("img");
+            img.src = "";
+            document.getElementById("logo-upload-input").value = null;
+            console.log("Üst Logo silindi.");
+            alert("Üst Logo silindi.");
+          });
+
+        const videoUploadArea = document.getElementById("video-upload-area");
+        const videoInput = document.getElementById("video-upload");
+        videoUploadArea.addEventListener("click", () => videoInput.click());
+        videoInput.addEventListener("change", (e) => {
+          const file = e.target.files[0];
+          if (file) {
+            console.log(`Tanıtım videosu seçildi: ${file.name}`);
+            alert(`Tanıtım videosu seçildi: ${file.name}`);
+          }
+        });
+
+        ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+          videoUploadArea.addEventListener(eventName, preventDefaults, false);
+        });
+        ["dragenter", "dragover"].forEach((eventName) => {
+          videoUploadArea.addEventListener(eventName, () => videoUploadArea.classList.add("highlight"), false);
+        });
+        ["dragleave", "drop"].forEach((eventName) => {
+          videoUploadArea.addEventListener(eventName, () => videoUploadArea.classList.remove("highlight"), false);
+        });
+        videoUploadArea.addEventListener(
+          "drop",
+          (e) => {
+            const dt = e.dataTransfer;
+            videoInput.files = dt.files;
+            videoInput.dispatchEvent(new Event("change"));
+          },
+          false
+        );
+
+        document
+          .querySelector(".simplified-content-management .content-item:nth-of-type(2) .btn-save")
+          .addEventListener("click", () => {
+            console.log("Tanıtım videosu kaydedildi.");
+            alert("Tanıtım videosu kaydedildi.");
+          });
+        document
+          .querySelector(".simplified-content-management .content-item:nth-of-type(2) .btn-delete")
+          .addEventListener("click", () => {
+            videoInput.value = null;
+            console.log("Tanıtım videosu silindi.");
+            alert("Tanıtım videosu silindi.");
+          });
+
+        const socialMediaContainer = document.getElementById("social-media-container");
+        socialMediaContainer.addEventListener("click", (e) => {
+          if (e.target.closest(".btn-remove-social")) {
+            e.target.closest(".social-input-group").remove();
+            console.log("Sosyal medya linki kaldırıldı.");
+          }
+        });
+        document
+          .querySelector(".simplified-content-management .content-item:nth-of-type(3) .btn-save")
+          .addEventListener("click", () => {
+            const links = Array.from(socialMediaContainer.querySelectorAll("input")).map((input) => input.value);
+            console.log("Sosyal medya linkleri kaydedildi:", links);
+            alert("Sosyal medya linkleri kaydedildi.");
+          });
+
+        const youtubeVideoContainer = document.getElementById("youtube-video-container");
+        const addVideoButton = document.querySelector(".btn-add-video");
+        addVideoButton.addEventListener("click", () => {
+          const newVideoItem = document.createElement("div");
+          newVideoItem.className = "video-item";
+          newVideoItem.innerHTML = `
+      <input type="text" class="form-control video-title" placeholder="Video Başlığı" />
+      <input type="text" class="form-control video-link" placeholder="YouTube Video Linki" />
+      <button class="btn btn-danger btn-icon btn-remove-video">
+        <i class="fas fa-times"></i>
+      </button>
+    `;
+          youtubeVideoContainer.insertBefore(newVideoItem, addVideoButton);
+          console.log("Yeni video alanı eklendi.");
+        });
+
+        youtubeVideoContainer.addEventListener("click", (e) => {
+          if (e.target.closest(".btn-remove-video")) {
+            e.target.closest(".video-item").remove();
+            console.log("YouTube videosu kaldırıldı.");
+          }
+        });
+
+        document
+          .querySelector(".simplified-content-management .content-item:nth-of-type(4) .btn-save")
+          .addEventListener("click", () => {
+            const videos = Array.from(youtubeVideoContainer.querySelectorAll(".video-item")).map((item) => ({
+              title: item.querySelector(".video-title").value,
+              link: item.querySelector(".video-link").value,
+            }));
+            console.log("YouTube videoları kaydedildi:", videos);
+            alert("YouTube videoları kaydedildi.");
+          });
+
+        document
+          .querySelector(".simplified-content-management .content-item:nth-of-type(4) .btn-delete")
+          .addEventListener("click", () => {
+            const videoItems = youtubeVideoContainer.querySelectorAll(".video-item");
+            videoItems.forEach((item) => item.remove());
+            youtubeVideoContainer.appendChild(addVideoButton);
+            console.log("Tüm YouTube videoları silindi.");
+            alert("Tüm YouTube videoları silindi.");
+          });
+
+        document
+          .querySelector(".simplified-content-management .content-item:nth-of-type(5) .btn-save")
+          .addEventListener("click", () => {
+            const text = document.querySelector(
+              ".simplified-content-management .content-item:nth-of-type(5) textarea"
+            ).value;
+            console.log("Ana Sayfa Başlık kaydedildi:", text);
+            alert("Ana Sayfa Başlık kaydedildi.");
+          });
+
+        const sliderImageGrid = document.getElementById("slider-images-grid");
+        const sliderImageUploadArea = document.getElementById("slider-upload-area");
+        const sliderImageInput = document.getElementById("slider-image-upload");
+
+        sliderImageUploadArea.addEventListener("click", () => sliderImageInput.click());
+
+        sliderImageInput.addEventListener("change", (e) => {
+          const files = e.target.files;
+          Array.from(files).forEach((file) => {
+            if (file.type.startsWith("image/")) {
+              const reader = new FileReader();
+              reader.onload = (event) => {
+                const newImageItem = document.createElement("div");
+                newImageItem.className = "slider-image-item";
+                newImageItem.innerHTML = `
+            <div class="media-preview">
+              <img src="${event.target.result}" alt="Kayan Görsel" class="current-slider-img" />
+              <button class="btn btn-danger btn-icon delete-image-btn" style="position: absolute; top: 5px; right: 5px">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          `;
+                sliderImageGrid.appendChild(newImageItem);
+              };
+              reader.readAsDataURL(file);
+            }
+          });
+          console.log("Kayan görseller yüklendi.");
+        });
+
+        sliderImageGrid.addEventListener("click", (e) => {
+          if (e.target.closest(".delete-image-btn")) {
+            e.target.closest(".slider-image-item").remove();
+            console.log("Kayan görsel silindi.");
+          }
+        });
+
+        document
+          .querySelector(".simplified-content-management .content-item:nth-of-type(6) .btn-save")
+          .addEventListener("click", () => {
+            const images = Array.from(sliderImageGrid.querySelectorAll("img")).map((img) => img.src);
+            console.log("Kayan görseller kaydedildi:", images);
+            alert("Kayan görseller kaydedildi.");
+          });
+
+        document
+          .querySelector(".simplified-content-management .content-item:nth-of-type(6) .btn-delete")
+          .addEventListener("click", () => {
+            sliderImageGrid.innerHTML = ""; // Clear all images
+            sliderImageInput.value = null;
+            console.log("Tüm kayan görseller silindi.");
+            alert("Tüm kayan görseller silindi.");
+          });
+
+        handleImageUpload("footer-logo-upload-area", "footer-logo-upload-input", "footer-logo-preview");
+        document
+          .querySelector(".simplified-content-management .content-item:nth-of-type(7) .btn-save")
+          .addEventListener("click", () => {
+            const footerData = {
+              logo: document.querySelector("#footer-logo-preview img").src,
+              description: document.querySelector(
+                ".simplified-content-management .content-item:nth-of-type(7) textarea"
+              ).value,
+              address: document.querySelector(
+                '.simplified-content-management .content-item:nth-of-type(7) .grid-3 input[type="text"]'
+              ).value,
+              phone: document.querySelector(
+                '.simplified-content-management .content-item:nth-of-type(7) .grid-3 input[type="tel"]'
+              ).value,
+              email: document.querySelector(
+                '.simplified-content-management .content-item:nth-of-type(7) .grid-3 input[type="email"]'
+              ).value,
+            };
+            console.log("Footer bilgileri kaydedildi:", footerData);
+            alert("Footer bilgileri kaydedildi.");
+          });
+      });
+    </script>
+  </body>
+</html>

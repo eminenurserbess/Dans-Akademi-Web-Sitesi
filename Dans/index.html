@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vali Osman Dance Academy</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="logo">
+          <a href="index.html">
+            <img src="images/textCrem.png" alt="Logo" />
+          </a>
+        </div>
+
+        <nav class="navbar">
+          <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="hakkımızda.html">Hakkımızda</a></li>
+            <li><a href="kurslar.html">Kurslar</a></li>
+            <li><a href="etkinlikler.html">Etkinlikler</a></li>
+            <li><a href="duyurular.html">Duyurular</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li class="lang-switcher">
+              <a href="#">EN</a>
+              <span>|</span>
+              <a href="#" class="active">RO</a>
+            </li>
+            <li>
+              <a href="ogrenci-girisi.html" class="student-login-btn">Öğrenci Girişi</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="mobile-nav-toggle">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+
+      <div class="mobile-menu">
+        <div class="mobile-menu-header">
+          <div class="mobile-logo">
+            <a href="index.html">
+              <img src="images/textCrem.png" alt="Logo" />
+            </a>
+          </div>
+          <div class="mobile-menu-close">
+            <i class="fas fa-times"></i>
+          </div>
+        </div>
+        <ul>
+          <li>
+            <a href="ogrenci-girisi.html" class="mobil-student-login-btn">Öğrenci Girişi</a>
+          </li>
+          <hr />
+          <li><a href="#">EN</a></li>
+          <hr />
+          <li><a href="#">RO</a></li>
+          <hr />
+          <li><a href="index.html">Ana Sayfa</a></li>
+          <hr />
+          <li><a href="hakkımızda.html">Hakkımızda</a></li>
+          <hr />
+          <li><a href="kurslar.html">Kurslar</a></li>
+          <hr />
+          <li><a href="etkinlikler.html">Etkinlikler</a></li>
+          <hr />
+          <li><a href="duyurular.html">Duyurular</a></li>
+          <hr />
+          <li><a href="galeri.html">Galeri</a></li>
+          <hr />
+          <li><a href="iletisim.html">İletişim</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main class="hero-section">
+      <video autoplay muted loop id="background-video">
+        <source src="videos/dans-video.mp4" type="video/mp4" />
+        Tarayıcınız video etiketini desteklemiyor.
+      </video>
+      <div class="video-overlay"></div>
+      <div class="hero-content">
+        <h1>Ritmul tau incepe aici....</h1>
+        <div class="hero-buttons">
+          <a href="kurslar.html" class="btn-primary">
+            <i class="fas fa-book-open"></i>
+            Kurslarımızı Keşfet
+          </a>
+          <a href="iletisim.html" class="btn-primary">
+            <i class="fas fa-phone"></i>
+            Bize Ulaşın
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </main>
+
+    <!-- Güncel Duyurular -->
+    <section class="announcements-home" id="announcements-home">
+      <div class="container">
+        <div class="section-header-with-button">
+          <h2 class="section-title">Güncel Duyurular</h2>
+          <a href="duyurular.html" class="btn-secondary-link">
+            Tüm Duyuruları Gör
+            <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+        <div class="announcement-grid">
+          <div class="announcement-card has-image">
+            <img src="images/duyuru1.jpg" alt="Yeni Sezon Kayıtları" class="card-image" />
+            <div class="card-content">
+              <h3>Yeni Sezon Kayıtları Başladı!</h3>
+              <p>
+                Tüm dans kurslarımız için erken kayıt fırsatlarını kaçırmayın. Detaylı bilgi için duyurular sayfamızı
+                ziyaret edin.
+              </p>
+              <span>15 Temmuz 2025</span>
+            </div>
+          </div>
+          <div class="announcement-card">
+            <div class="card-content">
+              <h3>Yaz Dönemi Yoğunlaştırılmış Programlar</h3>
+              <p>
+                Dans becerilerinizi hızla geliştirmek için yaz dönemi özel programlarımıza göz atın. Sınırlı kontenjan!
+              </p>
+              <span>10 Temmuz 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Yaklaşan Etkinlikler -->
+    <section class="upcoming-events" id="upcoming-events">
+      <div class="container">
+        <div class="section-header-with-button">
+          <h2 class="section-title">Yaklaşan Etkinlikler</h2>
+          <a href="etkinlikler.html" class="btn-secondary-link">
+            Tüm Etkinlikleri Gör
+            <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+        <div class="event-grid">
+          <div class="event-card">
+            <img src="images/event.png" alt="Dans Gösterisi" class="event-image" />
+            <div class="event-content">
+              <h3>Yıl Sonu Dans Gösterisi</h3>
+              <p>
+                Akademimizin geleneksel yıl sonu dans gösterisi ile öğrencilerimizin bir yıllık emeğini sergiliyoruz.
+                Muhteşem koreografiler ve unutulmaz anlar için bize katılın!
+              </p>
+              <div class="event-meta">
+                <span>
+                  <i class="ri-calendar-line"></i>
+                  20 Ağustos 2025
+                </span>
+                <span class="event-time">
+                  <i class="ri-time-line"></i>
+                  14:00 - 17:00
+                </span>
+                <span>
+                  <i class="ri-map-pin-line"></i>
+                  Büyük Sahne Sanatları Merkezi
+                </span>
+              </div>
+              <a href="#" class="btn-primary">
+                <i class="fas fa-ticket-alt"></i>
+                Kayıt Ol
+              </a>
+            </div>
+          </div>
+          <div class="event-card">
+            <img src="images/event2.jpg" alt="Dans Atölyesi" class="event-image" />
+            <div class="event-content">
+              <h3>Latin Dansları Atölyesi</h3>
+              <p>
+                Uzman eğitmenimizle Latin danslarının temel adımlarını ve ritmini öğreneceğiniz eğlenceli ve interaktif
+                bir atölye çalışması. Dans tutkunları için kaçırılmaması gereken bir fırsat!
+              </p>
+              <div class="event-meta">
+                <span>
+                  <i class="ri-calendar-line"></i>
+                  10 Eylül 2025
+                </span>
+                <span class="event-time">
+                  <i class="ri-time-line"></i>
+                  19:00 - 22:00
+                </span>
+                <span>
+                  <i class="ri-map-pin-line"></i>
+                  Vali Osman Dans Stüdyosu
+                </span>
+              </div>
+              <a href="#" class="btn-primary">
+                <i class="fas fa-ticket-alt"></i>
+                Kayıt Ol
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slider Galeri academySlider -->
+    <section class="gallery-slider">
+      <div class="container">
+        <div class="section-header-with-button">
+          <h2 class="section-title">Akademimizden Kareler</h2>
+          <a href="galeri.html" class="btn-secondary-link">
+            Tüm Fotoğrafları Gör
+            <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+        <div class="slider-container">
+          <div class="slider" id="academySlider">
+            <img src="images/slider4.jpg" alt="Last (clone)" />
+            <!-- SON KOPYA -->
+            <img src="images/slider1.jpg" alt="Akademi Görseli 1" />
+            <img src="images/slider2.jpg" alt="Akademi Görseli 2" />
+            <img src="images/slider3.jpg" alt="Akademi Görseli 3" />
+            <img src="images/slider4.jpg" alt="Akademi Görseli 4" />
+            <img src="images/slider1.jpg" alt="First (clone)" />
+            <!-- İLK KOPYA -->
+          </div>
+          <div class="slider-nav">
+            <button class="prev-btn" id="prevSlide">&#10094;</button>
+            <button class="next-btn" id="nextSlide">&#10095;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kurslar -->
+    <section class="course-showcase" id="courses">
+      <div class="container">
+        <div class="section-header-with-button">
+          <h2 class="section-title">Kurslarımız</h2>
+          <a href="kurslar.html" class="btn-secondary-link">
+            Tüm Kursları Gör
+            <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+
+        <div class="styles-grid">
+          <div class="style-card">
+            <div class="style-image">
+              <img src="images/grek-dans.jpg" alt="Grek Dans" />
+            </div>
+            <div class="style-content">
+              <h3>Greek Dans</h3>
+              <p>Geleneksel Yunan ezgileriyle ruhunuzu coşturun. Greek dansının coşkulu ve zarif dünyasını keşfedin.</p>
+              <p><strong>Eğitmen: Eleni Papadopoulou</strong></p>
+              <p><strong>Kontenjan: Sınırlı Sayıda Yer</strong></p>
+              <a href="#" class="btn-primary open-enrollment-modal" data-course-title="Grek Dans">
+                <i class="fas fa-ticket-alt"></i>
+                Katılmak İstiyorum
+              </a>
+              <a href="kurs-detay.html?id=1" class="style-link">Detaylar →</a>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <div class="style-image">
+              <img src="images/zeybekiko.jpg" alt="Zeybekiko" />
+            </div>
+            <div class="style-content">
+              <h3>Zeybekiko</h3>
+              <p>Ege'nin özgün ritimleriyle Zeybekiko'nun derin ve anlamlı hareketlerini öğrenin.</p>
+              <p><strong>Eğitmen: Mehmet Yılmaz</strong></p>
+              <p><strong>Kontenjan: 15 Kişi</strong></p>
+              <a href="#" class="btn-primary open-enrollment-modal" data-course-title="Zeybekiko">
+                <i class="fas fa-ticket-alt"></i>
+                Katılmak İstiyorum
+              </a>
+              <a href="kurs-detay.html?id=2" class="style-link">Detaylar →</a>
+            </div>
+          </div>
+
+          <div class="style-card">
+            <div class="style-image">
+              <img src="images/bale.jpg" alt="Bale" />
+            </div>
+            <div class="style-content">
+              <h3>Bale</h3>
+              <p>
+                Bale'nin zarafeti, disiplini ve estetiği ile vücudunuzu ve ruhunuzu geliştirin. Her seviyeye uygun
+                dersler.
+              </p>
+              <p><strong>Eğitmen: Ayşe Demir</strong></p>
+              <p><strong>Kontenjan: 20 Kişi</strong></p>
+              <a href="#" class="btn-primary open-enrollment-modal" data-course-title="Bale">
+                <i class="fas fa-ticket-alt"></i>
+                Katılmak İstiyorum
+              </a>
+              <a href="kurs-detay.html?id=3" class="style-link">Detaylar →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Youtube Videoları -->
+    <section class="youtube-videos" id="youtube-videos">
+      <div class="container">
+        <div class="section-header-with-button">
+          <h2 class="section-title">Youtube Videolarımız</h2>
+          <a href="https://www.youtube.com/@valiosman" class="btn-secondary-link">
+            Tüm Videoları Gör
+            <i class="ri-arrow-right-line"></i>
+          </a>
+        </div>
+        <div class="video-grid">
+          <div class="video-item">
+            <iframe
+              src="https://www.youtube.com/embed/3_3pIHyIj0U"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+            <h4>VALI OSMAN & DUYGU TUNCER - Zeibekiko Dance</h4>
+          </div>
+          <div class="video-item">
+            <iframe
+              src="https://www.youtube.com/embed/LcW7I4ENaB8"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+            <h4>VALI OSMAN - Dromi Tou Pouthena</h4>
+          </div>
+          <div class="video-item">
+            <iframe
+              src="https://www.youtube.com/embed/gC3CZC6J9no"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+            <h4>Vali Osman - ME XALAI</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col about-us">
+            <a href="index.html" class="footer-logo">
+              <img src="images/logoRosu3.png" alt="ROMANYA AKADEMİ Logo" />
+            </a>
+            <p>
+              Vali Osman Dance Academy, dans sanatını tutkuyla öğreten, ruhunuzu ve bedeninizi dansla birleştiren bir
+              eğitim kurumudur. Her seviyeden dansçıya kapımız açık!
+            </p>
+            <div class="footer-social-icons">
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-col quick-links">
+            <ul>
+              <li><a href="hakkımızda.html">Hakkımızda</a></li>
+              <li><a href="kurslar.html">Kurslarımız</a></li>
+              <li><a href="etkinlikler.html">Etkinlikler</a></li>
+              <li><a href="duyurular.html">Duyurular</a></li>
+              <li><a href="galeri.html">Galeri</a></li>
+              <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+          </div>
+          <div class="footer-col contact-info">
+            <h4>Bize Ulaşın</h4>
+            <ul>
+              <li>
+                <i class="ri-map-pin-line"></i>
+                Bulevardul Aviatorilor, Nr. 15, Sector 1, București, România
+              </li>
+              <li>
+                <i class="ri-phone-line"></i>
+                +40 123 456 789
+              </li>
+              <li>
+                <i class="ri-mail-line"></i>
+                info@romanyaakademi.com
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 VALİ OSMAN DANCE ACADEMY. Tüm Hakları Saklıdır.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Etkinlik Kayıt Ol Modalı -->
+    <div id="participationModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2 class="modal-title">Etkinlik Katılım Başvurusu</h2>
+        <p class="modal-description">
+          "
+          <span id="modalEventName">Yıl Sonu Gösterisi</span>
+          " etkinliğine katılmak için bilgilerinizi bırakın, biz size dönüş yapalım.
+        </p>
+        <form class="participation-form">
+          <div class="form-group">
+            <label for="fullName">Adınız Soyadınız:</label>
+            <input type="text" id="fullName" name="fullName" required />
+          </div>
+          <div class="form-group">
+            <label for="emailAddress">E-posta Adresiniz:</label>
+            <input type="email" id="emailAddress" name="emailAddress" required />
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Telefon Numaranız:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" required />
+          </div>
+          <button type="submit" class="btn-submit">Başvuruyu Gönder</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Kurslar Katılmak İstiyorum Modalı -->
+    <div id="enrollmentModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" onclick="closeModal('enrollmentModal')">&times;</span>
+        <h2 class="modal-title">Kurs Başvuru Formu</h2>
+        <p>
+          "
+          <span id="modalCourseTitle"></span>
+          " kursuna katılmak için aşağıdaki formu doldurunuz. Sizinle en kısa sürede iletişime geçilecektir.
+        </p>
+        <form id="enrollmentForm" class="participation-form">
+          <div class="form-group">
+            <label for="enrollName">Adınız Soyadınız:</label>
+            <input type="text" id="enrollName" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="enrollEmail">E-posta Adresiniz:</label>
+            <input type="email" id="enrollEmail" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="enrollPhone">Telefon Numaranız:</label>
+            <input type="tel" id="enrollPhone" name="phone" required />
+          </div>
+
+          <div class="form-group">
+            <label for="enrollMessage">Mesajınız (isteğe bağlı):</label>
+            <textarea id="enrollMessage" name="message" rows="4"></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Başvuruyu Gönder</button>
+        </form>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

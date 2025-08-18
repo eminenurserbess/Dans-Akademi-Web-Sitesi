@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tüm Etkinlikler - Vali Osman Dance Academy</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="css/etkinlikler.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="logo">
+          <a href="index.html">
+            <img src="images/textCrem.png" alt="Logo" />
+          </a>
+        </div>
+
+        <nav class="navbar">
+          <ul>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="hakkımızda.html">Hakkımızda</a></li>
+            <li><a href="kurslar.html">Kurslar</a></li>
+            <li><a href="etkinlikler.html" class="active">Etkinlikler</a></li>
+            <li><a href="duyurular.html">Duyurular</a></li>
+            <li><a href="galeri.html">Galeri</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li class="lang-switcher">
+              <a href="#">EN</a>
+              <span>|</span>
+              <a href="#">RO</a>
+            </li>
+            <li>
+              <a href="ogrenci-girisi.html" class="student-login-btn">Öğrenci Girişi</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="mobile-nav-toggle">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+
+      <div class="announcements-page-banner">
+        <h1>ETKİNLİKLER</h1>
+      </div>
+
+      <div class="mobile-menu">
+        <div class="mobile-menu-header">
+          <div class="mobile-logo">
+            <a href="index.html">
+              <img src="images/textCrem.png" alt="Logo" />
+            </a>
+          </div>
+          <div class="mobile-menu-close">
+            <i class="fas fa-times"></i>
+          </div>
+        </div>
+        <ul>
+          <li>
+            <a href="ogrenci-girisi.html" class="mobil-student-login-btn">Öğrenci Girişi</a>
+          </li>
+          <hr />
+          <li><a href="#">EN</a></li>
+          <hr />
+          <li><a href="#">RO</a></li>
+          <hr />
+          <li><a href="index.html">Ana Sayfa</a></li>
+          <hr />
+          <li><a href="hakkımızda.html">Hakkımızda</a></li>
+          <hr />
+          <li><a href="kurslar.html">Kurslar</a></li>
+          <hr />
+          <li><a href="etkinlikler.html">Etkinlikler</a></li>
+          <hr />
+          <li><a href="duyurular.html">Duyurular</a></li>
+          <hr />
+          <li><a href="galeri.html">Galeri</a></li>
+          <hr />
+          <li><a href="iletisim.html">İletişim</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main class="upcoming-events" id="upcoming-events">
+      <div class="container">
+        <div class="event-grid">
+          <div class="event-card">
+            <img src="images/event.png" alt="Dans Gösterisi" class="event-image" />
+            <div class="event-content">
+              <h3>Yıl Sonu Dans Gösterisi</h3>
+              <p>
+                Akademimizin geleneksel yıl sonu dans gösterisi ile öğrencilerimizin bir yıllık emeğini sergiliyoruz.
+                Muhteşem koreografiler ve unutulmaz anlar için bize katılın!
+              </p>
+              <div class="event-meta">
+                <span>
+                  <i class="ri-calendar-line"></i>
+                  20 Ağustos 2025
+                </span>
+                <span class="event-time">
+                  <i class="ri-time-line"></i>
+                  19:00 - 22:00
+                </span>
+                <span>
+                  <i class="ri-map-pin-line"></i>
+                  Büyük Sahne Sanatları Merkezi
+                </span>
+              </div>
+              <a href="#" class="btn-primary">
+                <i class="fas fa-ticket-alt"></i>
+                Kayıt Ol
+              </a>
+            </div>
+          </div>
+          <div class="event-card">
+            <img src="images/event2.jpg" alt="Dans Atölyesi" class="event-image" />
+            <div class="event-content">
+              <h3>Latin Dansları Atölyesi</h3>
+              <p>
+                Uzman eğitmenimizle Latin danslarının temel adımlarını ve ritmini öğreneceğiniz eğlenceli ve interaktif
+                bir atölye çalışması. Dans tutkunları için kaçırılmaması gereken bir fırsat!
+              </p>
+              <div class="event-meta">
+                <span>
+                  <i class="ri-calendar-line"></i>
+                  10 Eylül 2025
+                </span>
+                <span class="event-time">
+                  <i class="ri-time-line"></i>
+                  14:00 - 17:00
+                </span>
+                <span>
+                  <i class="ri-map-pin-line"></i>
+                  Vali Osman Dans Stüdyosu
+                </span>
+              </div>
+              <a href="#" class="btn-primary">
+                <i class="fas fa-ticket-alt"></i>
+                Kayıt Ol
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="pagination">
+          <button id="prevPage" class="pagination-btn" disabled>
+            <i class="ri-arrow-left-line"></i>
+            Önceki
+          </button>
+          <div id="pageNumbers" class="page-numbers"></div>
+          <button id="nextPage" class="pagination-btn">
+            Sonraki
+            <i class="ri-arrow-right-line"></i>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Etkinlik Kayıt Ol Modalı -->
+    <div id="participationModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2 class="modal-title">Etkinlik Katılım Başvurusu</h2>
+        <p class="modal-description">
+          "
+          <span id="modalEventName">Yıl Sonu Gösterisi</span>
+          " etkinliğine katılmak için bilgilerinizi bırakın, biz size dönüş yapalım.
+        </p>
+        <form class="participation-form">
+          <div class="form-group">
+            <label for="fullName">Adınız Soyadınız:</label>
+            <input type="text" id="fullName" name="fullName" required />
+          </div>
+          <div class="form-group">
+            <label for="emailAddress">E-posta Adresiniz:</label>
+            <input type="email" id="emailAddress" name="emailAddress" required />
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Telefon Numaranız:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" required />
+          </div>
+          <button type="submit" class="btn-submit">Başvuruyu Gönder</button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col about-us">
+            <a href="index.html" class="footer-logo">
+              <img src="images/logoRosu3.png" alt="ROMANYA AKADEMİ Logo" />
+            </a>
+            <p>
+              Vali Osman Dance Academy, dans sanatını tutkuyla öğreten, ruhunuzu ve bedeninizi dansla birleştiren bir
+              eğitim kurumudur. Her seviyeden dansçıya kapımız açık!
+            </p>
+            <div class="footer-social-icons">
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-col quick-links">
+            <ul>
+              <li><a href="hakkımızda.html">Hakkımızda</a></li>
+              <li><a href="kurslar.html">Kurslarımız</a></li>
+              <li><a href="etkinlikler.html">Etkinlikler</a></li>
+              <li><a href="duyurular.html">Duyurular</a></li>
+              <li><a href="galeri.html">Galeri</a></li>
+              <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+          </div>
+          <div class="footer-col contact-info">
+            <h4>Bize Ulaşın</h4>
+            <ul>
+              <li>
+                <i class="ri-map-pin-line"></i>
+                Bulevardul Aviatorilor, Nr. 15, Sector 1, București, România
+              </li>
+              <li>
+                <i class="ri-phone-line"></i>
+                +40 123 456 789
+              </li>
+              <li>
+                <i class="ri-mail-line"></i>
+                info@romanyaakademi.com
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 VALİ OSMAN DANCE ACADEMY. Tüm Hakları Saklıdır.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

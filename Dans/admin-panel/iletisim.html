@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yönetim Paneli | Vali Osman Dance Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      /* --- (Önceki CSS kodlarınız burada olduğu gibi kalacak) --- */
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+      :root {
+        --primary-color: #dd5928;
+        --primary-color-light: #f07047;
+        --primary-color-dark: #c04a1f;
+        --text-light: #eae0c8;
+        --text-dark: #333;
+        --text-gray: #666;
+        --header-bg: rgba(0, 0, 0, 0.7);
+        --header-background-solid: #817469;
+        --header-background-light: #968b81;
+        --shadow-color: rgba(0, 0, 0, 0.08);
+        --success-color: #28a745;
+        --danger-color: #dc3545;
+        --warning-color: #ffc107;
+        --info-color: #17a2b8;
+        --border-radius: 6px;
+        --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: #f9f7f5;
+        display: flex;
+        min-height: 100vh;
+        color: var(--text-dark);
+        line-height: 1.6;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 280px;
+        background-color: var(--header-background-solid);
+        color: var(--text-light);
+        height: 100vh;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        z-index: 100;
+        overflow: hidden;
+      }
+
+      .sidebar .logo {
+        padding: 20px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        flex-shrink: 0;
+      }
+
+      .sidebar .main-nav {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px 0;
+      }
+
+      .sidebar .main-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .sidebar .main-nav li a {
+        display: flex;
+        align-items: center;
+        padding: 16px 30px;
+        text-decoration: none;
+        color: var(--text-light);
+        font-size: 13.5px;
+        font-weight: 500;
+        position: relative;
+        transition: all 0.2s ease;
+      }
+
+      .sidebar .main-nav li a:hover {
+        background-color: var(--header-background-light);
+      }
+
+      .sidebar .main-nav li.active a {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .sidebar .sidebar-footer {
+        padding: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        flex-shrink: 0;
+      }
+
+      .sidebar .sidebar-footer a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--text-light);
+        padding: 10px;
+        border-radius: 4px;
+        background-color: var(--primary-color);
+        transition: background-color 0.2s ease;
+      }
+
+      .sidebar .sidebar-footer a:hover {
+        background-color: var(--primary-color-dark);
+      }
+
+      .sidebar .sidebar-footer a i {
+        margin-right: 10px;
+      }
+
+      .sidebar-close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        color: var(--text-light);
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 102;
+        display: none; /* Varsayılan olarak gizli, mobil'de gösterilecek */
+      }
+
+      /* Main Content */
+      main {
+        flex: 1;
+        margin-left: 280px;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* Content Panel */
+      .content-panel {
+        flex: 1;
+        padding: 30px;
+      }
+
+      .content-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .simplified-content-management {
+        max-width: 1500px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      /**--- ORTAK ALANLAR ---*/
+      .content-item {
+        background-color: #ffffff;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        padding: 25px;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .content-item:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .content-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+      }
+
+      .content-header h3 {
+        margin: 0;
+        font-size: 18px;
+        color: var(--primary-color);
+        font-weight: 800;
+      }
+
+      .content-body {
+        padding: 10px 0;
+      }
+
+      /* Button Styles */
+      .btn {
+        padding: 8px 16px;
+        border: none;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .btn i {
+        font-size: 14px;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-color-dark);
+      }
+
+      .btn-success {
+        background-color: var(--success-color);
+        color: white;
+      }
+
+      .btn-success:hover {
+        background-color: #218838;
+      }
+
+      .btn-danger {
+        background-color: var(--danger-color);
+        color: white;
+      }
+
+      .btn-danger:hover {
+        background-color: #c82333;
+      }
+
+      .btn-info {
+        background-color: var(--info-color);
+        color: white;
+      }
+
+      .btn-info:hover {
+        background-color: #138496;
+      }
+
+      .btn-sm {
+        padding: 6px 12px;
+        font-size: 13px;
+      }
+
+      .btn-icon {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border-radius: 50%;
+      }
+
+      /** Form Elements  ANA SAYFA METNİ- FOOTER*/
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        display: flex;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--text-dark);
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: var(--border-radius);
+        font-family: inherit;
+        font-size: 14px;
+        transition: border-color 0.3s;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(221, 89, 40, 0.2);
+      }
+
+      textarea.form-control {
+        min-height: 40px;
+        resize: vertical;
+      }
+
+      .video-title {
+        width: 50%;
+      }
+
+      .video-link {
+        width: 50%;
+      }
+
+      /* Media Upload Sections */
+      .upload-section {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+      }
+      .logo-display-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .upload-area {
+        border: 2px dashed #ddd;
+        border-radius: var(--border-radius);
+        padding: 30px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        max-width: 250px;
+        width: 100%;
+        margin-right: 50px;
+      }
+
+      .upload-area:hover {
+        border-color: var(--primary-color);
+        background-color: rgba(221, 89, 40, 0.05);
+      }
+
+      .upload-area i {
+        font-size: 40px;
+        color: var(--primary-color);
+        margin-bottom: 10px;
+      }
+
+      .upload-area p {
+        margin: 0;
+        color: var(--text-gray);
+      }
+
+      .media-preview {
+        position: relative;
+        width: 100%;
+        max-width: 200px;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        border: 1px solid #eee;
+      }
+
+      .media-preview img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .media-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .file-info {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        font-size: 14px;
+        color: var(--text-gray);
+      }
+
+      .file-info i {
+        margin-right: 8px;
+      }
+
+      /* Grid Layouts */
+      .grid {
+        display: grid;
+        gap: 15px;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      /* Social Media Inputs */
+      .social-input-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        gap: 10px;
+      }
+
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f5f5;
+        border-radius: var(--border-radius);
+        color: var(--text-gray);
+        font-size: 18px;
+      }
+
+      /* Video Items */
+      .video-item {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      /* Alert Messages */
+      .alert {
+        padding: 12px 15px;
+        border-radius: var(--border-radius);
+        margin-bottom: 20px;
+        font-size: 14px;
+        display: none;
+      }
+
+      .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+
+      .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+
+      /*Slider */
+      .slider-container {
+        display: flex; /* İçindeki elemanları yan yana dizer */
+        gap: 20px; /* Elemanlar arasına 20 piksel boşluk bırakır */
+        align-items: flex-start; /* Elemanları en üstten hizalar */
+      }
+
+      /* Animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .content-item {
+        animation: fadeIn 0.3s ease-out forwards;
+      }
+
+      /* İletişim Sayfası için Özel CSS */
+      .contact-form-container {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 15px;
+      }
+
+      /* Responsive Design */
+
+      /* Tablet ve Masaüstü (769px ve üzeri) */
+      @media (min-width: 769px) {
+        body {
+          display: flex;
+          flex-direction: row;
+        }
+        .mobile-header {
+          display: none;
+        }
+        .sidebar-close-btn {
+          display: none;
+        }
+        .desktop-logo {
+          display: block;
+        }
+        .sidebar {
+          left: 0;
+        }
+        main {
+          margin-left: 280px;
+        }
+      }
+
+      /* Ekstra tablet boyutları (992px ve altı) */
+      @media (max-width: 992px) {
+        .sidebar {
+          width: 240px;
+        }
+        main {
+          margin-left: 240px;
+        }
+        .grid-3 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* Mobil görünüm (768px ve altı) */
+      @media (max-width: 768px) {
+        body {
+          flex-direction: column;
+        }
+
+        .sidebar {
+          position: fixed;
+          top: 0px;
+          left: -280px; /* Başlangıçta gizli */
+          width: 280px;
+          transition: left 0.3s ease;
+          z-index: 102; /* Overlay'den daha yüksek */
+        }
+        .sidebar .main-nav {
+          margin-top: 40px;
+        }
+        .sidebar.active {
+          left: 0; /* Açıkken görünür */
+        }
+
+        .sidebar-close-btn {
+          display: block; /* Mobil görünümde göster */
+        }
+
+        main {
+          margin-left: 0;
+          padding-top: 70px;
+          width: 100%;
+          overflow-x: hidden;
+        }
+
+        .main-container {
+          flex: 1;
+        }
+
+        .content-wrapper {
+          padding: 0 15px;
+        }
+
+        .grid-2,
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+        .content-item {
+          padding: 20px;
+        }
+
+        .mobile-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 15px 20px;
+          background-color: var(--header-background-solid);
+          color: var(--text-light);
+          position: fixed;
+          top: 0;
+          width: 100%;
+          z-index: 101;
+          box-shadow: var(--box-shadow);
+        }
+
+        .mobile-header .logo h5 {
+          font-size: 15px;
+          margin-left: 15px;
+        }
+
+        .hamburger-menu {
+          background: transparent;
+          border: none;
+          color: white;
+          font-size: 24px;
+          cursor: pointer;
+        }
+
+        .desktop-logo {
+          display: none;
+        }
+
+        .overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 100;
+          display: none;
+        }
+
+        .overlay.active {
+          display: block;
+        }
+
+        .course-list-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .course-list-image {
+          width: 0%;
+          max-width: 250px;
+          margin: 0 auto 15px;
+        }
+
+        .course-list-actions {
+          margin-top: 15px;
+          display: flex;
+          justify-content: center;
+        }
+
+        .upload-section {
+          flex-direction: column;
+        }
+
+        .upload-area {
+          max-width: 100%;
+          margin: 0 0 15px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mobile-header">
+      <button class="hamburger-menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="logo">
+        <h5>Vali Osman Dance Academy Yönetim Paneli</h5>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <button class="sidebar-close-btn"><i class="fas fa-times"></i></button>
+      <div class="logo">
+        <h4>Vali Osman Dance Academy Yönetim Paneli</h4>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li>
+            <a href="index.html">
+              <span>Anasayfa</span>
+            </a>
+          </li>
+          <li>
+            <a href="hakkımızda.html">
+              <span>Hakkımızda</span>
+            </a>
+          </li>
+          <li>
+            <a href="kurslar.html">
+              <span>Kurslar</span>
+            </a>
+          </li>
+          <li>
+            <a href="etkinlikler.html">
+              <span>Etkinlikler</span>
+            </a>
+          </li>
+          <li>
+            <a href="duyurular.html">
+              <span>Duyurular</span>
+            </a>
+          </li>
+          <li>
+            <a href="galeri.html">
+              <span>Galeri</span>
+            </a>
+          </li>
+          <li class="active">
+            <a href="iletisim.html">
+              <span>İletişim</span>
+            </a>
+          </li>
+          <li>
+            <a href="kullanici-bilgileri.html">
+              <span>Kullanıcı Bilgileri</span>
+            </a>
+          </li>
+          <li>
+            <a href="raporlama.html">
+              <span>Raporlama</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="#">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Çıkış Yap</span>
+        </a>
+      </div>
+    </aside>
+
+    <main>
+      <div class="content-panel">
+        <div class="content-wrapper">
+          <div class="simplified-content-management">
+            <div class="content-item">
+              <div class="content-header">
+                <h3>İletişim Bilgileri</h3>
+                <div class="media-actions">
+                  <button id="saveContactBtn" class="btn btn-success btn-save">
+                    <i class="fas fa-save"></i>
+                    Kaydet
+                  </button>
+                </div>
+              </div>
+              <div class="content-body">
+                <div id="contactFormAlert" class="alert alert-success" role="alert" style="display: none">
+                  İletişim bilgileri başarıyla güncellendi!
+                </div>
+                <div class="grid grid-3" style="margin-top: 20px">
+                  <div class="form-group">
+                    <label class="form-label" for="contactAddress">Adres</label>
+                    <input type="text" class="form-control" id="contactAddress" placeholder="Adres" value="" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="contactPhone">Telefon</label>
+                    <input type="tel" class="form-control" id="contactPhone" placeholder="Telefon" value="" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="contactEmail">E-posta</label>
+                    <input type="email" class="form-control" id="contactEmail" placeholder="E-posta" value="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="overlay"></div>
+
+    <script>
+      // --- Elemanları seçme ---
+      const sidebar = document.querySelector(".sidebar");
+      const hamburgerBtn = document.querySelector(".hamburger-menu");
+      const sidebarCloseBtn = document.querySelector(".sidebar-close-btn");
+      const overlay = document.querySelector(".overlay");
+      const saveContactBtn = document.getElementById("saveContactBtn");
+      const contactAddress = document.getElementById("contactAddress");
+      const contactPhone = document.getElementById("contactPhone");
+      const contactEmail = document.getElementById("contactEmail");
+      const contactFormAlert = document.getElementById("contactFormAlert");
+
+      // --- Sidebar Açma/Kapama Fonksiyonları ---
+      function openSidebar() {
+        sidebar.classList.add("active");
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeSidebar() {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      // --- Olay Dinleyicileri ---
+      if (hamburgerBtn) {
+        hamburgerBtn.addEventListener("click", openSidebar);
+      }
+      if (sidebarCloseBtn) {
+        sidebarCloseBtn.addEventListener("click", closeSidebar);
+      }
+      if (overlay) {
+        overlay.addEventListener("click", closeSidebar);
+      }
+      sidebar.querySelectorAll(".main-nav li a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 768) {
+            closeSidebar();
+          }
+        });
+      });
+
+      // -------------------------------------------------------------------------
+      // İletişim Formu İşlevselliği: async/await kullanarak daha temiz bir yapı
+      // -------------------------------------------------------------------------
+      const iletisimApiUrl = "api/iletisim.php";
+
+      /**
+       * Sunucudan mevcut iletişim verilerini çeker ve form alanlarını doldurur.
+       */
+      async function fetchAndFillContactData() {
+        try {
+          const response = await fetch(iletisimApiUrl);
+
+          if (!response.ok) {
+            throw new Error(`HTTP hatası! Durum: ${response.status}`);
+          }
+
+          const data = await response.json();
+
+          if (data.success && data.data) {
+            contactAddress.value = data.data.adres || "";
+            contactPhone.value = data.data.telefon || "";
+            contactEmail.value = data.data.email || "";
+          } else {
+            console.error("Veri çekme hatası:", data.message);
+          }
+        } catch (error) {
+          console.error("API ile iletişim hatası:", error);
+          // Hata mesajını kullanıcıya göster
+          showFormAlert("Sunucuya bağlanırken bir hata oluştu.", "alert-danger");
+        }
+      }
+
+      /**
+       * Formdaki verileri alıp sunucuya POST isteğiyle gönderir.
+       */
+      async function saveContactData() {
+        const updatedData = {
+          adres: contactAddress.value.trim(),
+          telefon: contactPhone.value.trim(),
+          email: contactEmail.value.trim(),
+        };
+
+        try {
+          const response = await fetch(iletisimApiUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedData),
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP hatası! Durum: ${response.status}`);
+          }
+
+          const result = await response.json();
+
+          if (result.success) {
+            showFormAlert(result.message, "alert-success");
+            // Başarılı kayıttan sonra verileri tekrar çekmeye gerek yok, form zaten güncel
+          } else {
+            showFormAlert("Veri kaydedilirken bir hata oluştu: " + result.message, "alert-danger");
+          }
+        } catch (error) {
+          console.error("POST isteği sırasında hata oluştu:", error);
+          showFormAlert("POST isteği sırasında bir hata oluştu: " + error.message, "alert-danger");
+        }
+      }
+
+      /**
+       * Kullanıcıya uyarı mesajı gösteren yardımcı fonksiyon.
+       */
+      function showFormAlert(message, className) {
+        contactFormAlert.textContent = message;
+        contactFormAlert.className = `alert ${className}`;
+        contactFormAlert.style.display = "block";
+        setTimeout(() => {
+          contactFormAlert.style.display = "none";
+        }, 3000);
+      }
+
+      // --- Olay Dinleyicileri ---
+      if (saveContactBtn) {
+        saveContactBtn.addEventListener("click", saveContactData);
+      }
+
+      // -------------------------------------------------
+      // Sayfa DOM tamamen yüklendiğinde çalışacak ana başlangıç bloğu
+      // -------------------------------------------------
+      document.addEventListener("DOMContentLoaded", function () {
+        // Sayfa yüklendiğinde mevcut verileri çek
+        fetchAndFillContactData();
+      });
+    </script>
+  </body>
+</html>
